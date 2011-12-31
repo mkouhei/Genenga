@@ -1,0 +1,40 @@
+﻿\documentclass[12pt]{jarticle}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage{verbatim}
+\usepackage{plext}
+\pagestyle{empty}
+\setlength{\textwidth}{100truemm}
+\setlength{\hoffset}{0in}
+\setlength{\voffset}{0truemm}
+\setlength{\headheight}{0truemm}
+\setlength{\headsep}{0truemm}
+\setlength{\oddsidemargin}{0truemm}
+\setlength{\textheight}{148truemm}
+\setlength{\topmargin}{0truemm}
+\advance\oddsidemargin -1in
+\advance\topmargin -1in
+\setlength{\footskip}{0truemm}
+\begin{document}
+\setlength{\unitlength}{1truemm}
+
+{{#datas}}
+
+\begin{picture}(100,148)(0,0)
+    \put(41,127){\fontsize{24pt}{0pt}{\mcfamily { {{no1}} } } }
+    \put(47.5,127){\fontsize{24pt}{0pt}{\mcfamily { {{no2}} } } }
+    \put(54,127){\fontsize{24pt}{0pt}{\mcfamily { {{no3}} } } }
+    \put(62,127){\fontsize{24pt}{0pt}{\mcfamily { {{no4}} } } }
+    \put(68.5,127){\fontsize{24pt}{0pt}{\mcfamily { {{no5}} } } }
+    \put(75,127){\fontsize{24pt}{0pt}{\mcfamily { {{no6}} } } }
+    \put(81.5,127){\fontsize{24pt}{0pt}{\mcfamily { {{no7}} } } }
+    \put(70,25){\vbox{\hsize=9.5cm\tate\fontsize{18pt}{0pt}{\mcfamily { {{address}} } } } }
+    \put(45,25){\vbox{\tate\fontsize{36pt}{0pt}{\mcfamily {{name1}} 様} } }
+    {{#name2}}
+    \put(30,-11){\vbox{\tate\fontsize{36pt}{0pt}{\mcfamily {{name2}} 様} } }
+    {{/name2}}						  
+\end{picture}
+
+{{/datas}}
+
+\end{document}
+
