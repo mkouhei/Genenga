@@ -26,7 +26,11 @@ import genenga
 classifiers = [
     "Development Status :: 3 - Alpha",
     "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "Intended Audience :: End Users/Desktop",
+    "Natural Language :: Japanese",
     "Programming Language :: Python",
+    "Programming Language :: Python :: 2.7",
+    "Topic :: Text Processing :: Markup :: LaTeX",
 ]
 
 long_description = \
