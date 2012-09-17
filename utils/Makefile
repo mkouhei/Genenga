@@ -5,7 +5,7 @@ all: nenga-yoko.pdf
 nenga-yoko.dvi: nenga-yoko.tex Makefile
 
 %.pdf: %.dvi
-	dvipdfmx -p 148mm,100mm -f jis-cjk.map $<
+	dvipdfmx -p 148mm,100mm -f template/jis-cjk.map $<
 
 
 %.dvi: %.tex

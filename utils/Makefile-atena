@@ -5,7 +5,7 @@ all: atena.pdf
 atena.dvi: atena.tex Makefile-atena
 
 %.pdf: %.dvi
-	dvipdfmx -p 100mm,148mm -f vlpgochic.map $<
+	dvipdfmx -p 100mm,148mm -f template/vlpgochic.map $<
 
 %.dvi: %.tex
 	$(MAKE) check
