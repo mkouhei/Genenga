@@ -17,3 +17,4 @@
 """
 
 __version__ = '0.1'
+__template__ = '../../../../share/genenga/template/address.mustache'

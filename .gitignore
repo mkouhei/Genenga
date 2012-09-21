@@ -3,6 +3,4 @@
 *.dvi
 *.log
 *.pdf
-*.pyc
-atena.tex
-nenga/
+*.tex
