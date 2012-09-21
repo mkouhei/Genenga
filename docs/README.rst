@@ -17,7 +17,7 @@ Debian Packages
 * fonts-umeplus
 * make
 * ptex-bin
-* pystache (but yet current ITP)
+* python-pystache (but yet current ITP)
 
 format of address.csv
 ---------------------
@@ -55,4 +55,6 @@ Usage
 #. make, generate nenga-yoko.pdf, print this pdf
 #. generate atena.pdf, print this::
 
-   $ generate address.csv
+   $ genenga address.csv
+
+
