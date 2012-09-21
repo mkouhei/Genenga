@@ -10,9 +10,8 @@ Debian Packages
 
 * mendexk
 * texlive-binaries
-* nkf
 * libc-bin
-* python2.x
+* python2.7
 * fonts-vlgothic
 * fonts-aoyagi-kouzan-t
 * fonts-umeplus
@@ -20,22 +19,26 @@ Debian Packages
 * ptex-bin
 * pystache (but yet current ITP)
 
-address.csv format
-------------------
+format of address.csv
+---------------------
 
 address list is CSV. It is syntax is below::
 
-   flag,PersonName1,PersonName2,address,zipcode1,zipcode2,zipcode3,zipcode4,zipcode5,zipcode6,zipcode7
+   flag,PersonFullName1,PersonFullName2,address,PostalCode1,PostalCode2,PostalCode3,PostalCode4,PostalCode5,PostalCode6,PostalCode7
 
 
-example
+Example
 ^^^^^^^
 ::
 
-   1,猫にゃんこ,ねこちゃん,東京都中央区ねこまた町０ー０,0,0,0,0,0,0,0
+   1,子猫にゃんこ,ねこちゃん,東京都中央区ねこまた町０ー０,0,0,0,0,0,0,0
+   1,猫山にゃんごろ,,東京都太田区ねこむら町０ー０,0,0,0,0,0,0,0
+   1,猫村にゃん太,にゃんこ,東京都新宿区ねこ町０ー０,0,0,0,0,0,0,0
+   0,猫太ねこのすけ,,東京都三鷹市こねこ町０ー０,0,0,0,0,0,0,0
+   1,猫野ねこ太,ねこ助,神奈川県横浜市こねこ町０ー０,0,0,0,0,0,0,0
 
 
-flag of address first field
+Flag of address first field
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 #. target this year.
@@ -47,8 +50,9 @@ Usage
 -----
 
 #. Update address.csv
-#. convert photo, extractbb photoimage.
+#. convert photo, extractbb photoimage
 #. edit nenga-yoko.tex
-#. make, generate nenga-yoko.pdf, print this pdf.
-#. ./generate-atena.sh, generate atena.pdf, print this.
+#. make, generate nenga-yoko.pdf, print this pdf
+#. generate atena.pdf, print this::
 
+   $ generate address.csv
