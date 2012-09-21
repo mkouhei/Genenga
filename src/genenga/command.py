@@ -79,17 +79,18 @@ def generate_atena(args):
         args: command line arguments
     """
     if args.__dict__.get('address_list'):
-        address_list = args.__dict__.get('address_list')
-    else:
-        utils.error("no such file: %s" % address_list)
+        address_list = utils.check_existence_file(
+            args.__dict__.get('address_list'))
 
     if args.__dict__.get('template_path'):
-        tmpl_path = args.__dict__.get('template_path')
+        tmpl_path = utils.check_existence_file(
+            args.__dict__.get('template_path'))
     else:
-        tmpl_path = __template__
+        tmpl_path = utils.check_existence_file(__template__)
 
     if args.__dict__.get('destdir'):
-        destdir = os.path.abspath(args.__dict__.get('destdir'))
+        destdir = utils.check_existence_dir(
+            os.path.abspath(args.__dict__.get('destdir')))
     else:
         destdir = './'
 

@@ -16,6 +16,7 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import os
 
 
 def error(msg):
@@ -26,3 +27,19 @@ def error(msg):
 def save_file(path, data):
     with open(path, 'w') as f:
         f.write(data)
+
+
+def check_existence_file(path):
+    if os.path.isfile(path):
+        return path
+    else:
+        error("No such file %s" % path)
+        return False
+
+
+def check_existence_dir(path):
+    if not os.path.isdir(path):
+        os.mkdir(path)
+    if not path.endswith('/'):
+        path += '/'
+    return path
