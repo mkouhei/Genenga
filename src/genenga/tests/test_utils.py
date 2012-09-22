@@ -18,7 +18,6 @@
 """
 import os
 import unittest
-import random
 import genenga.utils as u
 
 
