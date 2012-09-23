@@ -26,7 +26,7 @@ def error(msg):
 
 def save_file(path, data):
     with open(path, 'w') as f:
-        f.write(data)
+        f.write((data))
 
 
 def check_existence_file(path):

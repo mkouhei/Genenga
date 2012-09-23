@@ -32,7 +32,7 @@ class utilsTests(unittest.TestCase):
              'no4': '0', 'no5': '0', 'no6': '0',
              'address': '東京都中央区ねこまた町０ー０',
              'no1': '0', 'no2': '0', 'no3': '0'},
-            {'no7': '0\n', 'name2': u'',
+            {'no7': '0\n', 'name2': '',
              'name1': '猫山にゃんごろ',
              'no4': '0', 'no5': '0', 'no6': '0',
              'address': '東京都太田区ねこむら町０ー０',

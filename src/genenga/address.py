@@ -43,9 +43,9 @@ class Address(object):
                      if line.split(',')[0] == '1']
             for l in lines:
                 address.append({
-                        "name1": l[1].decode('utf-8'),
-                        "name2": l[2].decode('utf-8'),
-                        "address": l[3].decode('utf-8'),
+                        "name1": l[1],
+                        "name2": l[2],
+                        "address": l[3],
                         "no1": l[4],
                         "no2": l[5],
                         "no3": l[6],

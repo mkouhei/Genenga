@@ -17,4 +17,4 @@
 """
 
 __version__ = '0.2'
-__template__ = '../../../../share/genenga/template/address.mustache'
+__template__ = '/usr/share/genenga/template/address.mustache'

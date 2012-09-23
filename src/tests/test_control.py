@@ -16,36 +16,24 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import sys
 import unittest
-import argparse
-import genenga.command as c
+import genenga
+from genenga import control as c
 
 
 class utilsTests(unittest.TestCase):
+
     def setUp(self):
-        self.prs = argparse.ArgumentParser(description='usage')
-        sys.argv = ['', 'example/address.csv']
+        self.template = {'search_dirs': 'template/',
+                         'template_name': 'address'}
+        self.address_file = 'example/address.csv'
+        self.outfile_path = '/tmp/address.tex'
+        self.tex_data = open('example/address.tex').read()
 
-    def test_parse_options(self):
-        """self.assertEqual('', c.parse_options())"""
-
-    def test_set_option(self):
-        c.set_option(self.prs, 'destdir')
-        self.assertTrue(
-            isinstance(
-                self.prs.__dict__.get('_option_string_actions').get('-d'),
-                argparse._StoreAction)
-            )
-        c.set_option(self.prs, 'template_path')
-        self.assertTrue(
-            isinstance(
-                self.prs.__dict__.get('_option_string_actions').get('-t'),
-                argparse._StoreAction)
-            )
-
-    def test_generate_atena(self):
-        pass
-
-    def test_main(self):
-        pass
+    def test_generate_atena_tex(self):
+        c.generate_atena_tex(self.template,
+                             self.address_file,
+                             self.outfile_path)
+        with open(self.outfile_path) as f:
+            data = f.read()
+            self.assertEquals(self.tex_data, data)

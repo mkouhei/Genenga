@@ -25,7 +25,8 @@ import genenga
 
 classifiers = [
     "Development Status :: 3 - Alpha",
-    "License :: OSI Approved :: GNU General Public License v3 or later (GPLv3+)",
+    "License :: OSI Approved :: GNU General Public\
+ License v3 or later (GPLv3+)",
     "Intended Audience :: End Users/Desktop",
     "Natural Language :: Japanese",
     "Programming Language :: Python",
@@ -34,15 +35,17 @@ classifiers = [
 ]
 
 long_description = \
-        open(os.path.join("docs","README.rst")).read() + \
-        open(os.path.join("docs","HISTORY.rst")).read() + \
-        open(os.path.join("docs","TODO.rst")).read()
+        open(os.path.join("docs", "README.rst")).read() + \
+        open(os.path.join("docs", "HISTORY.rst")).read() + \
+        open(os.path.join("docs", "TODO.rst")).read()
 
 requires = ['setuptools', 'pystache']
 
 setup(name='genenga',
       version=genenga.__version__,
-      description='Generate Nengajo(Japanese new year card) pdf from address list.',
+      description=(
+        'Generate Nengajo(Japanese new year card) pdf from address list.'
+        ),
       long_description=long_description,
       author='Kouhei Maeda',
       author_email='mkouhei@palmtb.net',
@@ -51,8 +54,9 @@ setup(name='genenga',
       classifiers=classifiers,
       packages=find_packages('src'),
       package_dir={'': 'src'},
-      data_files = [('share/genenga/example',
+      data_files=[('share/genenga/example',
                      ['example/address.csv',
+                      'example/address.tex',
                       'example/cat.jpg',
                       'example/cat.xbb',
                       'example/nenga-yoko.tex']),
@@ -62,16 +66,12 @@ setup(name='genenga',
                       'template/vlpgothic.map'])],
       install_requires=requires,
       extras_require=dict(
-        test=[
-            'nose',
-            'pep8',
-            'unittest',
-            ],
+        test=['pytest', 'pep8', 'unittest'],
         ),
-      test_suite='nose.collector',
-      tests_require=['nose','pep8','unittest'],
+      test_suite='tests.runtest',
+      tests_require=['pytest', 'pep8', 'unittest'],
       entry_points="""
         [console_scripts]
-        genga = genenga.command:main
+        genenga = genenga.command:main
 """,
 )

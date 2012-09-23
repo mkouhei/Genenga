@@ -18,9 +18,10 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 """
+import sys
 import pystache
-import address
-import utils
+from genenga import address
+from genenga import utils
 
 
 def generate_atena_tex(template, address_file, outfile_path):
@@ -44,6 +45,9 @@ def generate_atena_tex(template, address_file, outfile_path):
     addresses = address.Address(address_file)
 
     # generate atena TeX data
-    data = renderer.render(addresses).encode('utf-8')
+    if sys.version_info > (2, 6) and sys.version_info < (3, 0):
+        data = renderer.render(addresses).encode('utf-8')
+    elif sys.version_info > (3, 1):
+        data = renderer.render(addresses)
 
     utils.save_file(outfile_path, data)
