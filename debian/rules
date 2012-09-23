@@ -1,0 +1,45 @@
+#!/usr/bin/make -f
+# -*- makefile -*-
+# Sample debian/rules that uses debhelper.
+# This file was originally written by Joey Hess and Craig Small.
+# As a special exception, when this file is copied by dh-make into a
+# dh-make output file, you may use that output file without restriction.
+# This special exception was added by Craig Small in version 0.37 of dh-make.
+
+# Uncomment this to turn on verbose mode.
+#export DH_VERBOSE=1
+
+%:
+	dh $@ --with python2,python3
+
+override_dh_auto_build:
+	python2.7 setup.py build --build-base=build2 && \
+	python3.2 setup.py build --build-base=build3
+
+override_dh_auto_test:
+	py.test build2 && \
+	py.test-3 build3
+
+override_dh_installman:
+	cp -f $(CURDIR)/docs/man/genenga.1 $(CURDIR)/debian/genenga3.1 && \
+	dh_installman
+
+override_dh_auto_install:
+	python2.7 setup.py install --no-compile -O0 --install-layout=deb \
+	--root $(CURDIR)/debian/python-genenga && \
+	python3.2 setup.py install --no-compile -O0 --install-layout=deb \
+	--root $(CURDIR)/debian/python3-genenga
+
+override_dh_python3:
+	dh_python3 && \
+	mv -f $(CURDIR)/debian/python3-genenga/usr/bin/genenga $(CURDIR)/debian/python3-genenga/usr/bin/genenga3 && \
+	mv -f $(CURDIR)/debian/python3-genenga/usr/share/genenga $(CURDIR)/debian/python3-genenga/usr/share/genenga3
+
+override_dh_auto_clean:
+	rm -rf build* && \
+	rm -rf _build && \
+	rm -rf $(CURDIR)/src/genenga/__pycache__ && \
+	rm -f $(CURDIR)/src/genenga/__init__.pyc && \
+	rm -f $(CURDIR)/debian/genenga3.1 && \
+	dh_clean
+

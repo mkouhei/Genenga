@@ -1,0 +1,78 @@
+.\"                                      Hey, EMACS: -*- nroff -*-
+.\" First parameter, NAME, should be all caps
+.\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
+.\" other parameters are allowed: see man(7), man(1)
+.TH GENENGA 1 "September 21, 2012"
+.\" Please adjust this date whenever revising the manpage.
+.\"
+.\" Some roff macros, for reference:
+.\" .nh        disable hyphenation
+.\" .hy        enable hyphenation
+.\" .ad l      left justify
+.\" .ad b      justify to both left and right margins
+.\" .nf        disable filling
+.\" .fi        enable filling
+.\" .br        insert line break
+.\" .sp <n>    insert n+1 empty lines
+.\" for manpage-specific macros, see man(7)
+.SH NAME
+genenga \- generate LaTeX of destination information of Japanese new year card.
+.SH SYNOPSIS
+.B genenga
+.RI [ options ] " address_list"
+.br
+.SH DESCRIPTION
+This manual page documents briefly the
+.B genenga
+commands.
+.PP
+.\" TeX users may be more comfortable with the \fB<whatever>\fP and
+.\" \fI<whatever>\fP escape sequences to invode bold face and italics,
+.\" respectively.
+\fBGenenga\fP is a command line tool for generating LaTeX of destination information of Japanese new year card. Destination information is called "Atena", New year card is called "Nenga\-jo" in Japanese. Genenga generates LaTeX from address list formatted with CSV. The format of CSV is follows;
+
+ * target_flag
+ * PersonFullName
+ * PartnerOfPersonFullName
+ * Adddress
+ * PostalCode1
+ * PostalCode2
+ * PostalCode3
+ * PostalCode4
+ * PostalCode5
+ * PostalCode6
+ * PostalCode7
+
+Target_flag is 0 or 1, 0 is excepted as target of "Atena". PartnerOfPersonFullName is optional. The value of colomns are required except of PartnerOfPersonFullName. PostalCode is Japanese format, that is seven numbers.
+
+.SH OPTIONS
+These programs follow the usual GNU command line syntax, with long
+options starting with two dashes (`-').
+A summary of options is included below.
+For a complete description, see the Info files.
+.TP
+.B \-h, \-\-help
+Show summary of options.
+.TP
+.B \-v, \-\-version
+Show program's version number.
+.TP
+.B \-d DESTDIR, \-\-destdir DESTDIR
+Specify destination directory path of output
+.TP
+.B \-t TEMPLATE_PATH, \-\-template_path TEMPLATE_PATH
+Specify template path of pystache. Default is /usr/share/genenga/template/address.mustache.
+.TP
+.B address_list
+Specify CSV file as address list.
+.TP
+.SH SEE ALSO
+.br
+The programs are documented by
+.IR "README" ,
+available via the Info system.
+.SH AUTHOR
+genenga was written by Kouhei Maeda <mkouhei@palmtb.net>.
+.PP
+This manual page was written by Kouhei Maeda <mkouhei@palmtb.net>.
+for the Debian project (and may be used by others).

@@ -1,0 +1,9 @@
+include MANIFEST.in
+include LICENSE
+recursive-include docs *.1 *.rst
+recursive-exclude src *.pyc
+recursive-include src *.py
+recursive-exclude template *~
+recursive-include template *
+recursive-exclude example *~
+recursive-include example *
