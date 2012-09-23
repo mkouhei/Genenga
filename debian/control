@@ -1,0 +1,28 @@
+Source: genenga
+Section: python
+Priority: optional
+Maintainer: Kouhei Maeda <mkouhei@palmtb.net>
+Build-Depends: debhelper (>= 8.0.0), python-all, python-setuptools, python-pytest, python3-all, python3-setuptools, python3-pytest, python-pystache, python3-pystache
+Standards-Version: 3.9.3
+X-Python-Version: 2.7, 3.2
+Homepage: https://github.com/mkouhei/Genenga
+
+Package: python-genenga
+Architecture: all
+Depends: ${python:Depends}, ${misc:Depends}, python-pystache
+Provides: ${python:Provides}
+Description: generator PDF of Nengajo from address list
+ Genenga  is  a  command line tool for generating LaTeX of destination
+ information of Japanese new year card. Destination information is called
+ "Atena", New year card is called  "Nenga-jo" in  Japanese. Genenga generates
+ LaTeX from address list formatted with CSV.
+
+Package: python3-genenga
+Architecture: all
+Depends: ${python3:Depends}, ${misc:Depends}, python3-pystache
+Provides: ${python3:Provides}
+Description: generator PDF of Nengajo from address list for python3
+ Genenga  is  a  command line tool for generating LaTeX of destination
+ information of Japanese new year card for python3. Destination information is
+ called "Atena", New year card is called  "Nenga-jo" in  Japanese. Genenga
+ generates LaTeX from address list formatted with CSV.
