@@ -17,11 +17,13 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import unittest
-import genenga
-from genenga import control as c
+import sys
+import os.path
+sys.path.append(os.path.abspath('src'))
+import genenga.control as c
 
 
-class utilsTests(unittest.TestCase):
+class controlTests(unittest.TestCase):
 
     def setUp(self):
         self.template = {'search_dirs': 'template/',

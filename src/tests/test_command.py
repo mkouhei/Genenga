@@ -19,10 +19,12 @@
 import sys
 import unittest
 import argparse
-from genenga import command as c
+import os.path
+sys.path.append(os.path.abspath('src'))
+import genenga.command as c
 
 
-class utilsTests(unittest.TestCase):
+class commamdTests(unittest.TestCase):
     def setUp(self):
         self.prs = argparse.ArgumentParser(description='usage')
         sys.argv = ['', 'example/address.csv']

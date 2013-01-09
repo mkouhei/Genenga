@@ -20,7 +20,7 @@ import unittest
 import genenga.__init__ as i
 
 
-class utilsTests(unittest.TestCase):
+class initTests(unittest.TestCase):
 
     def test_const(self):
         self.assertTrue(i.__version__)

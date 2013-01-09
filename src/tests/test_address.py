@@ -18,10 +18,13 @@
 """
 import os
 import unittest
+import sys
+import os.path
+sys.path.append(os.path.abspath('src'))
 import genenga.address as a
 
 
-class utilsTests(unittest.TestCase):
+class addressTests(unittest.TestCase):
     def setUp(self):
         self.infile = 'example/address.csv'
         self.dict = {}
