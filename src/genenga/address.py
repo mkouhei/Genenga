@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012, 2013 Kouhei Maeda <mkouhei@palmtb.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -42,16 +42,16 @@ class Address(object):
                      for line in f
                      if line.split(',')[0] == '1']
             for l in lines:
-                address.append({
-                        "name1": l[1],
-                        "name2": l[2],
-                        "address": l[3],
-                        "no1": l[4],
-                        "no2": l[5],
-                        "no3": l[6],
-                        "no4": l[7],
-                        "no5": l[8],
-                        "no6": l[9],
-                        "no7": l[10]
-                        })
+                address.append(
+                    {"name1": l[1],
+                     "name2": l[2],
+                     "address": l[3],
+                     "no1": l[4],
+                     "no2": l[5],
+                     "no3": l[6],
+                     "no4": l[7],
+                     "no5": l[8],
+                     "no6": l[9],
+                     "no7": l[10]
+                     })
         return address

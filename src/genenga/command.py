@@ -22,10 +22,7 @@
 """
 import argparse
 import os.path
-from genenga import utils
-from genenga import control
-from genenga.__init__ import __version__
-from genenga.__init__ import __template__
+from genenga import utils, control, __version__, __template__
 
 
 def parse_options():

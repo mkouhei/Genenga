@@ -5,7 +5,7 @@ which py.test-3 || exit 1
 (
 cd $(git rev-parse --show-toplevel)
 py.test -v || exit 1
-py.test-3 -v || exit 1
+py.test-3 -v --ignore=src/genenga_tests/test_pep8.py || exit 1
 python setup.py check -r || exit 1
 python3 setup.py check -r || exit 1
 )
