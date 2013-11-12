@@ -27,11 +27,29 @@
     \put(68.5,127){\fontsize{24pt}{0pt}{\mcfamily { {{no5}} } } }
     \put(75,127){\fontsize{24pt}{0pt}{\mcfamily { {{no6}} } } }
     \put(81.5,127){\fontsize{24pt}{0pt}{\mcfamily { {{no7}} } } }
-    \put(70,25){\vbox{\hsize=9.5cm\tate\fontsize{18pt}{0pt}{\mcfamily { {{address}} } } } }
-    \put(45,25){\vbox{\tate\fontsize{36pt}{0pt}{\mcfamily {{name1}} 様} } }
-    {{#name2}}
-    \put(30,-11){\vbox{\tate\fontsize{36pt}{0pt}{\mcfamily {{name2}} 様} } }
-    {{/name2}}						  
+    {{#address3}}
+    \put(76,28){\vbox{\hsize=9.9cm\tate\fontsize{15pt}{0pt}{\mcfamily { {{address}} } } } }
+    \put(68,15){\vbox{\hsize=9.9cm\tate\fontsize{15pt}{0pt}{\mcfamily { {{address2}} } } } }
+    \put(60,-30){\vbox{\hsize=9.9cm\tate\fontsize{15pt}{0pt}{\mcfamily { {{address3}} } } } }
+    {{/address3}}
+    {{^address3}}
+    {{#address2}}
+    \put(76,28){\vbox{\hsize=9.9cm\tate\fontsize{15pt}{0pt}{\mcfamily { {{address}} } } } }
+    \put(68,15){\vbox{\hsize=9.9cm\tate\fontsize{15pt}{0pt}{\mcfamily { {{address2}} } } } }
+    {{/address2}}
+    {{^address2}}
+    \put(70,28){\vbox{\hsize=9.9cm\tate\fontsize{15pt}{0pt}{\mcfamily { {{address}} } } } }
+    {{/address2}}
+    {{/address3}}
+    {{#first_name2}}
+    \put(45,20){\vbox{\tate\fontsize{36pt}{0pt}{\mcfamily {{last_name}}} } }
+    \put(45,-25){\vbox{\tate\fontsize{36pt}{0pt}{\mcfamily {{first_name1}} 様} } }
+    \put(30,-25){\vbox{\tate\fontsize{36pt}{0pt}{\mcfamily {{first_name2}} 様} } }
+    {{/first_name2}}
+    {{^first_name2}}
+    \put(43,20){\vbox{\tate\fontsize{36pt}{0pt}{\mcfamily {{last_name}}} } }
+    \put(43,-25){\vbox{\tate\fontsize{36pt}{0pt}{\mcfamily {{first_name1}} 様} } }
+    {{/first_name2}}
 \end{picture}
 
 {{/address}}
