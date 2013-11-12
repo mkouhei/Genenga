@@ -64,7 +64,7 @@ def set_option(parser, keyword):
     if keyword == 'template_path':
         # using template name
         parser.add_argument(
-            '-t', '--template_path', action='store',
+            '-t', '--template_path', action='store', required=True,
             help='pystache template file path')
 
 
