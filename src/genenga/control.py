@@ -20,8 +20,7 @@
 """
 import sys
 import pystache
-from genenga import address
-from genenga import utils
+from genenga import address, utils
 
 
 def generate_atena_tex(template, address_file, outfile_path):

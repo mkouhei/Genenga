@@ -16,9 +16,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    ----
-    Not need convert to EUC-JP or ISO-2022-JP with nkf now
-    why ptex (TeX Live 2012/Debian) supports utf-8.
 """
 import argparse
 import os.path
