@@ -32,9 +32,11 @@ commands.
 \fBGenenga\fP is a command line tool for generating LaTeX of destination information of Japanese new year card. Destination information is called "Atena", New year card is called "Nenga\-jo" in Japanese. Genenga generates LaTeX from address list formatted with CSV. The format of CSV is follows;
 
  * target_flag
- * PersonFullName
- * PartnerOfPersonFullName
+ * PersonLastName
+ * PersonFirstName
+ * PartnerOfPersonFirstName
  * Adddress
+ * Adddress2
  * PostalCode1
  * PostalCode2
  * PostalCode3
@@ -61,7 +63,7 @@ Show program's version number.
 Specify destination directory path of output
 .TP
 .B \-t TEMPLATE_PATH, \-\-template_path TEMPLATE_PATH
-Specify template path of pystache. Default is /usr/share/genenga/template/address.mustache.
+Specify template path of pystache.
 .TP
 .B address_list
 Specify CSV file as address list.
