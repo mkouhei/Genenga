@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012,2013 Kouhei Maeda <mkouhei@palmtb.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,16 +16,10 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-    ----
-    Not need convert to EUC-JP or ISO-2022-JP with nkf now
-    why ptex (TeX Live 2012/Debian) supports utf-8.
 """
 import argparse
 import os.path
-from genenga import utils
-from genenga import control
-from genenga.__init__ import __version__
-from genenga.__init__ import __template__
+from genenga import utils, control, __version__, __template__
 
 
 def parse_options():
@@ -67,7 +61,7 @@ def set_option(parser, keyword):
     if keyword == 'template_path':
         # using template name
         parser.add_argument(
-            '-t', '--template_path', action='store',
+            '-t', '--template_path', action='store', required=True,
             help='pystache template file path')
 
 

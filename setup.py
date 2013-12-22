@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    Copyright (C) 2012 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012, 2013 Kouhei Maeda <mkouhei@palmtb.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -66,10 +66,10 @@ setup(name='genenga',
                       'template/vlpgothic.map'])],
       install_requires=requires,
       extras_require=dict(
-        test=['pytest', 'pep8', 'unittest'],
+        test=['pytest', 'pep8'],
         ),
       test_suite='tests.runtest',
-      tests_require=['pytest', 'pep8', 'unittest'],
+      tests_require=['pytest', 'pep8'],
       entry_points="""
         [console_scripts]
         genenga = genenga.command:main

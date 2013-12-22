@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012, 2013 Kouhei Maeda <mkouhei@palmtb.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -19,10 +19,12 @@
 import sys
 import unittest
 import argparse
-from genenga import command as c
+import os.path
+sys.path.append(os.path.abspath('src'))
+import genenga.command as c
 
 
-class utilsTests(unittest.TestCase):
+class commamdTests(unittest.TestCase):
     def setUp(self):
         self.prs = argparse.ArgumentParser(description='usage')
         sys.argv = ['', 'example/address.csv']

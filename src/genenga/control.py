@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012,2013 Kouhei Maeda <mkouhei@palmtb.net>
 
 
     This program is free software: you can redistribute it and/or modify
@@ -20,8 +20,7 @@
 """
 import sys
 import pystache
-from genenga import address
-from genenga import utils
+from genenga import address, utils
 
 
 def generate_atena_tex(template, address_file, outfile_path):
@@ -39,15 +38,15 @@ def generate_atena_tex(template, address_file, outfile_path):
                                  search_dirs=s_dirs,
                                  string_encoding='utf-8')
     # set template
-    renderer.load_template(template.get('template_name'))
+    tmpl = renderer.load_template(template.get('template_name'))
 
     # load address data
     addresses = address.Address(address_file)
 
     # generate atena TeX data
     if sys.version_info > (2, 6) and sys.version_info < (3, 0):
-        data = renderer.render(addresses).encode('utf-8')
+        data = renderer.render(tmpl, addresses).encode('utf-8')
     elif sys.version_info > (3, 1):
-        data = renderer.render(addresses)
+        data = renderer.render(tmpl, addresses)
 
     utils.save_file(outfile_path, data)

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012,2013 Kouhei Maeda <mkouhei@palmtb.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -26,32 +26,53 @@ class Address(object):
     def address(self):
         address = []
         with open(self.address_file) as f:
-            # 0: 1 is enable, 0 is not disable
-            # 1: name1 destination full name (required)
-            # 2: name2 destination partner first name (optional)
-            # 3: address
-            # 4: no1 of postal code in Japan
-            # 5: no2 of postal code in Japan
-            # 6: no3 of postal code in Japan
-            # 7: no4 of postal code in Japan
-            # 8: no5 of postal code in Japan
-            # 9: no6 of postal code in Japan
-            # 10:no7 of postal code in Japan
+            # 0: 1 is enable, other than 1 is disable.
+            # 1: last_name destination last(family) name (required)
+            # 2: first_name1 destination first name (required)
+            # 3: first_name2 destination partner first name (optional)
+            # 4: address
+            # 5: address2 detail address
+            # 6: no1 of postal code in Japan
+            # 7: no2 of postal code in Japan
+            # 8: no3 of postal code in Japan
+            # 9: no4 of postal code in Japan
+            # 10: no5 of postal code in Japan
+            # 11: no6 of postal code in Japan
+            # 12: no7 of postal code in Japan
 
             lines = [line.split(',')
                      for line in f
                      if line.split(',')[0] == '1']
             for l in lines:
-                address.append({
-                        "name1": l[1],
-                        "name2": l[2],
-                        "address": l[3],
-                        "no1": l[4],
-                        "no2": l[5],
-                        "no3": l[6],
-                        "no4": l[7],
-                        "no5": l[8],
-                        "no6": l[9],
-                        "no7": l[10]
-                        })
+                if len(l) == 14:
+                    address.append(
+                        {"last_name": l[1],
+                         "first_name1": l[2],
+                         "first_name2": l[3],
+                         "address": l[4],
+                         "address2": l[5],
+                         "no1": l[6],
+                         "no2": l[7],
+                         "no3": l[8],
+                         "no4": l[9],
+                         "no5": l[10],
+                         "no6": l[11],
+                         "no7": l[12],
+                         "address3": l[13],
+                         })
+                else:
+                    address.append(
+                        {"last_name": l[1],
+                         "first_name1": l[2],
+                         "first_name2": l[3],
+                         "address": l[4],
+                         "address2": l[5],
+                         "no1": l[6],
+                         "no2": l[7],
+                         "no3": l[8],
+                         "no4": l[9],
+                         "no5": l[10],
+                         "no6": l[11],
+                         "no7": l[12]
+                         })
         return address

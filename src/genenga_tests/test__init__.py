@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012, 2013 Kouhei Maeda <mkouhei@palmtb.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,23 +17,14 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import unittest
-import genenga
-from genenga import control as c
+import sys
+import os.path
+sys.path.append(os.path.abspath('src'))
+import genenga.__init__ as i
 
 
-class utilsTests(unittest.TestCase):
+class initTests(unittest.TestCase):
 
-    def setUp(self):
-        self.template = {'search_dirs': 'template/',
-                         'template_name': 'address'}
-        self.address_file = 'example/address.csv'
-        self.outfile_path = '/tmp/address.tex'
-        self.tex_data = open('example/address.tex').read()
-
-    def test_generate_atena_tex(self):
-        c.generate_atena_tex(self.template,
-                             self.address_file,
-                             self.outfile_path)
-        with open(self.outfile_path) as f:
-            data = f.read()
-            self.assertEquals(self.tex_data, data)
+    def test_const(self):
+        self.assertTrue(i.__version__)
+        self.assertTrue(i.__template__)
