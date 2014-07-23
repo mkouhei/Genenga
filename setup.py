@@ -15,7 +15,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-
 import os
 import sys
 from setuptools import setup, find_packages
@@ -32,8 +31,8 @@ class Tox(TestCommand):
     def run_tests(self):
         import tox
         errno = tox.cmdline(self.test_args)
-        sys.exit(errno)        
-    
+        sys.exit(errno)
+
 
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -46,18 +45,17 @@ classifiers = [
     "Topic :: Text Processing :: Markup :: LaTeX",
 ]
 
-long_description = \
-        open("README.rst").read() + \
-        open(os.path.join("docs", "HISTORY.rst")).read() + \
-        open(os.path.join("docs", "TODO.rst")).read()
+long_description = (open("README.rst").read() +
+                    open(os.path.join("docs", "HISTORY.rst")).read() +
+                    open(os.path.join("docs", "TODO.rst")).read())
 
 requires = ['setuptools', 'pystache']
 
+
 setup(name='genenga',
       version=__version__,
-      description=(
-        'Generate Nengajo(Japanese new year card) pdf from address list.'
-        ),
+      description=('Generate Nengajo(Japanese new year card) pdf '
+                   'from address list.'),
       long_description=long_description,
       author='Kouhei Maeda',
       author_email='mkouhei@palmtb.net',
@@ -66,20 +64,19 @@ setup(name='genenga',
       classifiers=classifiers,
       packages=find_packages(),
       data_files=[('share/genenga/example',
-                     ['example/address.csv',
-                      'example/address.tex',
-                      'example/cat.jpg',
-                      'example/cat.xbb',
-                      'example/nenga-yoko.tex']),
-                    ('share/genenga/template',
-                     ['template/address.mustache',
-                      'template/jis-cjk.map',
-                      'template/vlpgothic.map'])],
+                   ['example/address.csv',
+                    'example/address.tex',
+                    'example/cat.jpg',
+                    'example/cat.xbb',
+                    'example/nenga-yoko.tex']),
+                  ('share/genenga/template',
+                   ['template/address.mustache',
+                    'template/jis-cjk.map',
+                    'template/vlpgothic.map'])],
       install_requires=requires,
       tests_require=['tox'],
       cmdclass={'test': Tox},
       entry_points="""
         [console_scripts]
         genenga = genenga.command:main
-""",
-)
+""",)

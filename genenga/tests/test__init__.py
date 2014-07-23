@@ -17,11 +17,11 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import unittest
-from genenga import __init__ as i
+from genenga import (__version__, __template__)
 
 
 class initTests(unittest.TestCase):
 
     def test_const(self):
-        self.assertTrue(i.__version__)
-        self.assertTrue(i.__template__)
+        self.assertTrue(__version__)
+        self.assertTrue(__template__)

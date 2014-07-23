@@ -27,10 +27,8 @@ class controlTests(unittest.TestCase):
                          'template_name': 'address'}
         self.address_file = 'example/address.csv'
         self.outfile_path = '/tmp/address.tex'
-        self.tex_data = open('example/address.tex').read()
-
-    def tearDown(self):
-        self.tex_data.close()
+        with open('example/address.tex') as f:
+            self.tex_data = f.read()
 
     def test_generate_atena_tex(self):
         c.generate_atena_tex(self.template,
