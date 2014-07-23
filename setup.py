@@ -19,9 +19,21 @@
 import os
 import sys
 from setuptools import setup, find_packages
+from setuptools.command.test import test as TestCommand
+from genenga import __version__
 
-sys.path.insert(0, 'src')
-import genenga
+
+class Tox(TestCommand):
+    def finalize_options(self):
+        TestCommand.finalize_options(self)
+        self.test_args = []
+        self.test_suite = True
+
+    def run_tests(self):
+        import tox
+        errno = tox.cmdline(self.test_args)
+        sys.exit(errno)        
+    
 
 classifiers = [
     "Development Status :: 3 - Alpha",
@@ -35,14 +47,14 @@ classifiers = [
 ]
 
 long_description = \
-        open(os.path.join("docs", "README.rst")).read() + \
+        open("README.rst").read() + \
         open(os.path.join("docs", "HISTORY.rst")).read() + \
         open(os.path.join("docs", "TODO.rst")).read()
 
 requires = ['setuptools', 'pystache']
 
 setup(name='genenga',
-      version=genenga.__version__,
+      version=__version__,
       description=(
         'Generate Nengajo(Japanese new year card) pdf from address list.'
         ),
@@ -52,8 +64,7 @@ setup(name='genenga',
       url='https://github.com/mkouhei/GenNenga',
       license=' GNU General Public License version 3',
       classifiers=classifiers,
-      packages=find_packages('src'),
-      package_dir={'': 'src'},
+      packages=find_packages(),
       data_files=[('share/genenga/example',
                      ['example/address.csv',
                       'example/address.tex',
@@ -65,11 +76,8 @@ setup(name='genenga',
                       'template/jis-cjk.map',
                       'template/vlpgothic.map'])],
       install_requires=requires,
-      extras_require=dict(
-        test=['pytest', 'pep8'],
-        ),
-      test_suite='tests.runtest',
-      tests_require=['pytest', 'pep8'],
+      tests_require=['tox'],
+      cmdclass={'test': Tox},
       entry_points="""
         [console_scripts]
         genenga = genenga.command:main

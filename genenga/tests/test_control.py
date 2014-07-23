@@ -17,14 +17,25 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import unittest
-import sys
-import os.path
-sys.path.append(os.path.abspath('src'))
-import genenga.__init__ as i
+from genenga import control as c
 
 
-class initTests(unittest.TestCase):
+class controlTests(unittest.TestCase):
 
-    def test_const(self):
-        self.assertTrue(i.__version__)
-        self.assertTrue(i.__template__)
+    def setUp(self):
+        self.template = {'search_dirs': 'template/',
+                         'template_name': 'address'}
+        self.address_file = 'example/address.csv'
+        self.outfile_path = '/tmp/address.tex'
+        self.tex_data = open('example/address.tex').read()
+
+    def tearDown(self):
+        self.tex_data.close()
+
+    def test_generate_atena_tex(self):
+        c.generate_atena_tex(self.template,
+                             self.address_file,
+                             self.outfile_path)
+        with open(self.outfile_path) as f:
+            data = f.read()
+            self.assertEquals(self.tex_data, data)

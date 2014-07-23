@@ -16,30 +16,38 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import os
 import sys
 import unittest
-import os.path
-sys.path.append(os.path.abspath('src'))
-
-from genenga import utils as u
+import argparse
+from genenga import command as c
 
 
-class utilsTests(unittest.TestCase):
+class commamdTests(unittest.TestCase):
     def setUp(self):
-        self.path = '/tmp/genenga_test'
-        self.dirpath = '/tmp/genenga_test_dir/'
-        self.data = 'testtesttest'
-        u.save_file(self.path, self.data)
+        self.prs = argparse.ArgumentParser(description='usage')
+        sys.argv = ['', 'example/address.csv']
 
-    def test_check_existence_dir(self):
-        self.assertEquals(self.dirpath,
-                          u.check_existence_dir(self.dirpath))
+    def test_parse_options(self):
+        """self.assertEqual('', c.parse_options())"""
 
-    def test_save_file(self):
-        with open(self.path) as f:
-            self.assertEquals(f.read(), self.data)
+    def test_set_option(self):
+        c.set_option(self.prs, 'destdir')
 
-    def test_check_existence_file(self):
-        self.assertEquals(self.path,
-                          u.check_existence_file(self.path))
+        self.assertTrue(
+            isinstance(
+                self.prs.__dict__.get('_option_string_actions').get('-d'),
+                argparse._StoreAction)
+            )
+
+        c.set_option(self.prs, 'template_path')
+        self.assertTrue(
+            isinstance(
+                self.prs.__dict__.get('_option_string_actions').get('-t'),
+                argparse._StoreAction)
+            )
+
+    def test_generate_atena(self):
+        pass
+
+    def test_main(self):
+        pass
