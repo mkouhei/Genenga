@@ -36,12 +36,17 @@ class Tox(TestCommand):
 
 classifiers = [
     "Development Status :: 3 - Alpha",
-    "License :: OSI Approved :: GNU General Public\
- License v3 or later (GPLv3+)",
+    "License :: OSI Approved :: "
+    "GNU General Public License v3 or later (GPLv3+)",
     "Intended Audience :: End Users/Desktop",
     "Natural Language :: Japanese",
     "Programming Language :: Python",
+    "Programming Language :: Python :: 2",
     "Programming Language :: Python :: 2.7",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.3",
+    "Programming Language :: Python :: 3.4",
+    "Programming Language :: Python :: Implementation :: CPython",
     "Topic :: Text Processing :: Markup :: LaTeX",
 ]
 
