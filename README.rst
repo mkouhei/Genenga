@@ -9,15 +9,15 @@ Debian Packages
 ^^^^^^^^^^^^^^^
 
 * mendexk
-* texlive-binaries
+* texlive-binaries (>= 2014.20140717)
 * libc-bin
-* python2.7
+* python2.7 over or python3.3 over
 * fonts-vlgothic
 * fonts-aoyagi-kouzan-t
 * fonts-umeplus
 * make
 * ptex-bin
-* python-pystache (but yet current ITP)
+* python-pystache or python3-pystache
 
 format of address.csv
 ---------------------
