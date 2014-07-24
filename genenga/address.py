@@ -19,13 +19,17 @@
 
 
 class Address(object):
+    """ Dict format of Address """
 
     def __init__(self, infile):
         self.address_file = infile
 
     def address(self):
+        """ convert list of Addresses data from CSV to Dict,
+        Returns: list of address as dict
+        """
         address = []
-        with open(self.address_file) as f:
+        with open(self.address_file) as fobj:
             # 0: 1 is enable, other than 1 is disable.
             # 1: last_name destination last(family) name (required)
             # 2: first_name1 destination first name (required)
@@ -41,38 +45,36 @@ class Address(object):
             # 12: no7 of postal code in Japan
 
             lines = [line.split(',')
-                     for line in f
+                     for line in fobj
                      if line.split(',')[0] == '1']
-            for l in lines:
-                if len(l) == 14:
+            for record in lines:
+                if len(record) == 14:
                     address.append(
-                        {"last_name": l[1],
-                         "first_name1": l[2],
-                         "first_name2": l[3],
-                         "address": l[4],
-                         "address2": l[5],
-                         "no1": l[6],
-                         "no2": l[7],
-                         "no3": l[8],
-                         "no4": l[9],
-                         "no5": l[10],
-                         "no6": l[11],
-                         "no7": l[12],
-                         "address3": l[13],
-                         })
+                        {"last_name": record[1],
+                         "first_name1": record[2],
+                         "first_name2": record[3],
+                         "address": record[4],
+                         "address2": record[5],
+                         "no1": record[6],
+                         "no2": record[7],
+                         "no3": record[8],
+                         "no4": record[9],
+                         "no5": record[10],
+                         "no6": record[11],
+                         "no7": record[12],
+                         "address3": record[13]})
                 else:
                     address.append(
-                        {"last_name": l[1],
-                         "first_name1": l[2],
-                         "first_name2": l[3],
-                         "address": l[4],
-                         "address2": l[5],
-                         "no1": l[6],
-                         "no2": l[7],
-                         "no3": l[8],
-                         "no4": l[9],
-                         "no5": l[10],
-                         "no6": l[11],
-                         "no7": l[12]
-                         })
+                        {"last_name": record[1],
+                         "first_name1": record[2],
+                         "first_name2": record[3],
+                         "address": record[4],
+                         "address2": record[5],
+                         "no1": record[6],
+                         "no2": record[7],
+                         "no3": record[8],
+                         "no4": record[9],
+                         "no5": record[10],
+                         "no6": record[11],
+                         "no7": record[12]})
         return address

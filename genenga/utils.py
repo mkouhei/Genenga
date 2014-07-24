@@ -17,29 +17,47 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
+import sys
 
 
 def error(msg):
+    """ print Error mesage and sys.exit(1)
+    Argument:
+        msg: error message as string
+    """
     print("ERROR: %s" % msg)
-    exit(1)
+    sys.exit(1)
 
 
 def save_file(path, data):
-    with open(path, 'w') as f:
-        f.write((data))
+    """ writing data to file.
+    Arguments:
+        path: file path as string
+        data: data
+    """
+    with open(path, 'w') as fobj:
+        fobj.write((data))
 
 
-def check_existence_file(path):
-    if os.path.isfile(path):
-        return path
+def check_existence_file(file_path):
+    """ check exisitence of file.
+    Argument:
+        path: file path as string
+    Return: bool
+    """
+    if os.path.isfile(file_path):
+        return True
     else:
-        error("No such file %s" % path)
+        error("No such file %s" % file_path)
         return False
 
 
-def check_existence_dir(path):
-    if not os.path.isdir(path):
-        os.mkdir(path)
-    if not path.endswith('/'):
-        path += '/'
-    return path
+def check_existence_dir(dir_path):
+    """ check exisitence of directory.
+    Argument:
+        dir_path: directory path as string
+    Return: bool
+    """
+    if not os.path.isdir(dir_path):
+        os.mkdir(dir_path)
+    return dir_path

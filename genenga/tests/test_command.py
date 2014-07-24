@@ -17,37 +17,73 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import sys
+import os
 import unittest
 import argparse
+if sys.version_info < (3, 0):
+    from StringIO import StringIO
+else:
+    from io import StringIO
 from genenga import command as c
 
 
-class commamdTests(unittest.TestCase):
+class CommamdTests(unittest.TestCase):
+    """ tests of command module """
+
     def setUp(self):
-        self.prs = argparse.ArgumentParser(description='usage')
-        sys.argv = ['', 'example/address.csv']
+        self.parser = argparse.ArgumentParser(description='usage')
+        self.capture = sys.stdout
+        self.capture_err = sys.stderr
+        sys.stdout = StringIO()
+        sys.stderr = StringIO()
 
-    def test_parse_options(self):
-        """self.assertEqual('', c.parse_options())"""
+    def tearDown(self):
+        sys.stdout = self.capture
+        sys.stderr = self.capture_err
+        if os.path.exists('/tmp/address.tex'):
+            os.remove('/tmp/address.tex')
 
-    def test_set_option(self):
-        c.set_option(self.prs, 'destdir')
+    def test_parse_options_fail(self):
+        """ testing parse_options() """
+        with self.assertRaises(SystemExit) as error:
+            c.parse_options()
+        self.assertEqual(2, error.exception.code)
+        self.assertTrue(sys.stderr.getvalue())
 
-        self.assertTrue(
-            isinstance(
-                self.prs.__dict__.get('_option_string_actions').get('-d'),
-                argparse._StoreAction)
-            )
+    def test_set_option_destdir(self):
+        """ testing set_option() """
+        c.set_option(self.parser, 'destdir')
+        self.assertEqual('/tmp',
+                         self.parser.parse_args('-d /tmp'.split()).destdir)
+        self.assertEqual('/tmp/foo',
+                         self.parser.parse_args(
+                             '--destdir /tmp/foo'.split()).destdir)
 
-        c.set_option(self.prs, 'template_path')
-        self.assertTrue(
-            isinstance(
-                self.prs.__dict__.get('_option_string_actions').get('-t'),
-                argparse._StoreAction)
-            )
+    def test_set_option_address_list(self):
+        """ testing set_option() """
+        c.set_option(self.parser, 'address_list')
+        self.assertEqual('address.csv',
+                         self.parser.parse_args(
+                             'address.csv'.split()).address_list)
+
+    def test_set_option_template_path(self):
+        """ testing set_option() """
+        c.set_option(self.parser, 'template_path')
+        self.assertEqual('address.mastache',
+                         self.parser.parse_args(
+                             '-t address.mastache'.split()).template_path)
+        self.assertEqual('address.mastache',
+                         self.parser.parse_args(
+                             '--template_path '
+                             'address.mastache'.split()).template_path)
 
     def test_generate_atena(self):
-        pass
-
-    def test_main(self):
-        pass
+        """ testing generate_atena() """
+        c.set_option(self.parser, 'destdir')
+        c.set_option(self.parser, 'template_path')
+        c.set_option(self.parser, 'address_list')
+        args = self.parser.parse_args('-d /tmp/ '
+                                      '-t template/address.mustache '
+                                      'example/address.csv'.split())
+        c.generate_atena(args)
+        self.assertTrue(os.path.exists('/tmp/address.tex'))

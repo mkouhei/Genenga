@@ -20,7 +20,9 @@ import unittest
 from genenga import address as a
 
 
-class addressTests(unittest.TestCase):
+class AddressTests(unittest.TestCase):
+    """ tests for address module """
+
     def setUp(self):
         self.infile = 'example/address.csv'
         self.dict = {}
@@ -49,6 +51,7 @@ class addressTests(unittest.TestCase):
              'no1': '0', 'no2': '0', 'no3': '0'}]
 
     def test_addrss(self):
+        """ tesging address() """
         addr = a.Address(self.infile)
         self.assertFalse(self.dict, addr.address())
         self.assertTrue(self.address, addr.address())

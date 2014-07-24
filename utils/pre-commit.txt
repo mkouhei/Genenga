@@ -8,5 +8,9 @@ python setup.py check -r || exit 1
 python3 setup.py check -r || exit 1
 pychecker genenga/*.py
 pychecker -q genenga/tests/*.py
-pylint genenga
+pylint -d too-few-public-methods \
+    -d too-many-public-methods \
+    -d superfluous-parens \
+    -d no-self-use \
+    genenga
 )
