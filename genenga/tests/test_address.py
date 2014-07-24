@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012, 2013 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012-2014 Kouhei Maeda <mkouhei@palmtb.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,15 +16,13 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import os
 import unittest
-import sys
-import os.path
-sys.path.append(os.path.abspath('src'))
-import genenga.address as a
+from genenga import address as a
 
 
-class addressTests(unittest.TestCase):
+class AddressTests(unittest.TestCase):
+    """ tests for address module """
+
     def setUp(self):
         self.infile = 'example/address.csv'
         self.dict = {}
@@ -53,6 +51,7 @@ class addressTests(unittest.TestCase):
              'no1': '0', 'no2': '0', 'no3': '0'}]
 
     def test_addrss(self):
+        """ tesging address() """
         addr = a.Address(self.infile)
         self.assertFalse(self.dict, addr.address())
         self.assertTrue(self.address, addr.address())

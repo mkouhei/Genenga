@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012,2013 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012-2014 Kouhei Maeda <mkouhei@palmtb.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -73,25 +73,26 @@ def generate_atena(args):
         args: command line arguments
     """
     if args.__dict__.get('address_list'):
-        address_list = utils.check_existence_file(
-            args.__dict__.get('address_list'))
+        if utils.check_existence_file(args.address_list):
+            address_list = args.address_list
 
     if args.__dict__.get('template_path'):
-        tmpl_path = utils.check_existence_file(
-            args.__dict__.get('template_path'))
+        if utils.check_existence_file(args.template_path):
+            tmpl_path = args.template_path
     else:
-        tmpl_path = utils.check_existence_file(__template__)
+        if utils.check_existence_file(__template__):
+            tmpl_path = __template__
 
     if args.__dict__.get('destdir'):
-        destdir = utils.check_existence_dir(
-            os.path.abspath(args.__dict__.get('destdir')))
+        if utils.check_existence_dir(args.destdir):
+            destdir = os.path.abspath(args.destdir)
     else:
         destdir = './'
 
     srch_dirs = os.path.dirname(tmpl_path)
     tmpl_name = os.path.basename(tmpl_path).rsplit('.mustache')[0]
     template = {'search_dirs': srch_dirs, 'template_name': tmpl_name}
-    outfile_path = destdir + tmpl_name + '.tex'
+    outfile_path = os.path.join(destdir, tmpl_name + '.tex')
 
     control.generate_atena_tex(template, address_list, outfile_path)
 
@@ -101,10 +102,10 @@ def main():
     try:
         args = parse_options()
         args.func(args)
-    except RuntimeError as e:
-        utils.error(e)
-    except UnboundLocalError as e:
-        utils.error(e)
+    except RuntimeError as error:
+        utils.error(error)
+    except UnboundLocalError as error:
+        utils.error(error)
 
 
 if __name__ == '__main__':

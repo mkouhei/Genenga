@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012, 2013 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012-2014 Kouhei Maeda <mkouhei@palmtb.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,15 +15,6 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
-import unittest
-import sys
-import os.path
-sys.path.append(os.path.abspath('src'))
-import genenga.__init__ as i
 
-
-class initTests(unittest.TestCase):
-
-    def test_const(self):
-        self.assertTrue(i.__version__)
-        self.assertTrue(i.__template__)
+__version__ = '0.4.0'
+__template__ = '/usr/share/genenga/template/address.mustache'

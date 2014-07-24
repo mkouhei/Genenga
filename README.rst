@@ -2,6 +2,16 @@
 Genenga is generator PDF of Nengajo from address list.
 ======================================================
 
+This utility is generate PDF for printing address "Happy new year card",
+a.k.a. "Nengajo" in Japanese.
+
+.. image:: https://secure.travis-ci.org/mkouhei/Genenga.png?branch=master
+   :target: http://travis-ci.org/mkouhei/Genenga
+.. image:: https://coveralls.io/repos/mkouhei/Genenga/badge.png?branch=master
+   :target: https://coveralls.io/r/mkouhei/Genenga?branch=master
+.. image:: https://pypip.in/v/Genenga/badge.png
+   :target: https://crate.io/packages/Genenga
+
 Requirement
 -----------
 
@@ -9,15 +19,15 @@ Debian Packages
 ^^^^^^^^^^^^^^^
 
 * mendexk
-* texlive-binaries
+* texlive-binaries (>= 2014.20140717)
 * libc-bin
-* python2.7
+* python2.7 over or python3.3 over
 * fonts-vlgothic
 * fonts-aoyagi-kouzan-t
 * fonts-umeplus
 * make
 * ptex-bin
-* python-pystache (but yet current ITP)
+* python-pystache or python3-pystache
 
 format of address.csv
 ---------------------

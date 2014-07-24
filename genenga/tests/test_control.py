@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012, 2013 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012-2014 Kouhei Maeda <mkouhei@palmtb.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -16,26 +16,31 @@
     You should have received a copy of the GNU General Public License
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
+import os
 import unittest
-import sys
-import os.path
-sys.path.append(os.path.abspath('src'))
-import genenga.control as c
+from genenga import control as c
 
 
-class controlTests(unittest.TestCase):
+class ControlTests(unittest.TestCase):
+    """ tests for control module """
 
     def setUp(self):
         self.template = {'search_dirs': 'template/',
                          'template_name': 'address'}
         self.address_file = 'example/address.csv'
         self.outfile_path = '/tmp/address.tex'
-        self.tex_data = open('example/address.tex').read()
+        with open('example/address.tex') as fobj:
+            self.tex_data = fobj.read()
+
+    def tearDown(self):
+        if os.path.exists(self.outfile_path):
+            os.remove(self.outfile_path)
 
     def test_generate_atena_tex(self):
+        """ testing generate_atena_tex() """
         c.generate_atena_tex(self.template,
                              self.address_file,
                              self.outfile_path)
-        with open(self.outfile_path) as f:
-            data = f.read()
+        with open(self.outfile_path) as fobj:
+            data = fobj.read()
             self.assertEquals(self.tex_data, data)

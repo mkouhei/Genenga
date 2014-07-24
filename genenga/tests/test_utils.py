@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """
     <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012, 2013 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012-2014 Kouhei Maeda <mkouhei@palmtb.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -17,29 +17,34 @@
     along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import os
-import sys
 import unittest
-import os.path
-sys.path.append(os.path.abspath('src'))
-
-from genenga import utils as u
+from genenga import utils
 
 
-class utilsTests(unittest.TestCase):
+class UtilsTests(unittest.TestCase):
+    """ tests for units module """
+
     def setUp(self):
-        self.path = '/tmp/genenga_test'
-        self.dirpath = '/tmp/genenga_test_dir/'
+        self.file_path = '/tmp/genenga_test'
+        self.dir_path = '/tmp/genenga_test_dir/'
         self.data = 'testtesttest'
-        u.save_file(self.path, self.data)
+        utils.save_file(self.file_path, self.data)
+
+    def tearDown(self):
+        if os.path.exists(self.dir_path):
+            os.rmdir(self.dir_path)
+        if os.path.exists(self.file_path):
+            os.remove(self.file_path)
 
     def test_check_existence_dir(self):
-        self.assertEquals(self.dirpath,
-                          u.check_existence_dir(self.dirpath))
+        """ testing check_existence_dir() """
+        self.assertTrue(utils.check_existence_dir(self.dir_path))
 
     def test_save_file(self):
-        with open(self.path) as f:
-            self.assertEquals(f.read(), self.data)
+        """ testing saving file """
+        with open(self.file_path) as fobj:
+            self.assertEquals(fobj.read(), self.data)
 
     def test_check_existence_file(self):
-        self.assertEquals(self.path,
-                          u.check_existence_file(self.path))
+        """ testing check_existence_file() """
+        self.assertTrue(utils.check_existence_file(self.file_path))

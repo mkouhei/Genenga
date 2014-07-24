@@ -1,41 +1,32 @@
 MAKEINDEX:=mendex -f -g
 SRCDIR:=.
 
-all: atena.pdf
-atena.dvi: atena.tex Makefile-atena
+all: address.pdf
+address.dvi: address.tex
 
 %.pdf: %.dvi
-	dvipdfmx -p 100mm,148mm -f template/vlpgochic.map $<
+	dvipdfmx -p 100mm,148mm -f template/vlpgothic.map $<
 
 %.dvi: %.tex
-	$(MAKE) check
 	## end of linting stuff
 	platex $< # create draft input
-	-$(MAKEINDEX) -s atena.ist $(<:%.tex=%)
+	-$(MAKEINDEX) -s address.ist $(<:%.tex=%)
 	platex $< # create draft content with correct spacing for index and toc
-	-$(MAKEINDEX) -s atena.ist $(<:%.tex=%) # recreate index with correct page number
+	-$(MAKEINDEX) -s address.ist $(<:%.tex=%) # recreate index with correct page number
 	platex $< # recreate toc with correct page number
 
-check:
-	# check that character code is OK.
-	#iconv -f euc-jp -t euc-jp < atena.tex > /dev/null
-	# specifically check that character code is not iso-2022-jp
-	! iconv -f iso-2022-jp -t euc-jp < atena.tex > /dev/null
-	# check that pre-commit hook is installed.
-	# if this fails, please do:
 
 check-precommit:
-	make check
-	make atena.dvi
+	make address.dvi
 
 clean:
 	rm -f *~ *.aux *.log *.toc comment.cut
 	rm -f *.dvi *.lof *.lot *.idx *.ind *.ilg *.bbl *.blg *.out
 
 cleanall: clean
-	rm -f atena.pdf
+	rm -f address.pdf
 
-$(PDF):	atena.pdf
+$(PDF):	address.pdf
 	cp $< $@
 
-.PHONY: all check clean check-precommit cleanall
+.PHONY: all clean check-precommit cleanall
