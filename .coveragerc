@@ -1,0 +1,6 @@
+[run]
+include =
+    genenga/*
+
+omit =
+    genenga/tests/*
