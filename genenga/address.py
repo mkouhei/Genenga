@@ -1,32 +1,39 @@
 # -*- coding: utf-8 -*-
-"""
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012-2014 Kouhei Maeda <mkouhei@palmtb.net>
+"""genenga.address module.
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+Copyright (C) 2012-2014 Kouhei Maeda <mkouhei@palmtb.net>
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 
 
 class Address(object):
-    """ Dict format of Address """
+
+    """Dict format of Address."""
 
     def __init__(self, infile):
+        """Initialize Address.
+
+        :param str infile: infile path
+        """
         self.address_file = infile
 
     def address(self):
-        """ convert list of Addresses data from CSV to Dict,
-        Returns: list of address as dict
+        """convert list of Addresses data from CSV to Dict.
+
+        :rtype: list
+        :return: address dict
         """
         address = []
         with open(self.address_file) as fobj:

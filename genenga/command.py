@@ -1,21 +1,20 @@
 # -*- coding: utf-8 -*-
-"""
-    <one line to give the program's name and a brief idea of what it does.>
-    Copyright (C) 2012-2014 Kouhei Maeda <mkouhei@palmtb.net>
+"""genenga.command.
 
-    This program is free software: you can redistribute it and/or modify
-    it under the terms of the GNU General Public License as published by
-    the Free Software Foundation, either version 3 of the License, or
-    (at your option) any later version.
+Copyright (C) 2012-2014 Kouhei Maeda <mkouhei@palmtb.net>
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
 
-    You should have received a copy of the GNU General Public License
-    along with this program.  If not, see <http://www.gnu.org/licenses/>.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
 """
 import argparse
 import os.path
@@ -23,7 +22,7 @@ from genenga import utils, control, __version__, __template__
 
 
 def parse_options():
-    """parse options"""
+    """parse options."""
     prs = argparse.ArgumentParser(description='usage')
     prs.add_argument('-v', '--version',
                      action='version',
@@ -39,12 +38,10 @@ def parse_options():
 
 
 def set_option(parser, keyword):
-    """set options by keyword
+    """set options by keyword.
 
-    Arguments:
-
-        parser:  object of argparser
-        keyword: keyword of option
+    :param parser: object of argparser
+    :param keyword: keyword of option
     """
     if keyword == 'destdir':
         # output file of directory path
@@ -66,11 +63,9 @@ def set_option(parser, keyword):
 
 
 def generate_atena(args):
-    """generate atena
+    """generate atena.
 
-    Arguments:
-
-        args: command line arguments
+    :param args: command line arguments
     """
     if args.__dict__.get('address_list'):
         if utils.check_existence_file(args.address_list):
@@ -98,7 +93,7 @@ def generate_atena(args):
 
 
 def main():
-    """main function"""
+    """main function."""
     try:
         args = parse_options()
         args.func(args)
