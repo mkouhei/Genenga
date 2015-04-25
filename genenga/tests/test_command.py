@@ -20,11 +20,11 @@ import sys
 import os
 import unittest
 import argparse
+from genenga import command as c
 if sys.version_info < (3, 0):
     from StringIO import StringIO
 else:
     from io import StringIO
-from genenga import command as c
 
 
 class CommamdTests(unittest.TestCase):

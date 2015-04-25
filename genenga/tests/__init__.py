@@ -1,1 +1,1 @@
-""" tests for genenga package """
+"""tests for genenga package."""

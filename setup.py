@@ -23,6 +23,12 @@ from genenga import __version__
 
 
 class Tox(TestCommand):
+    user_options = [('tox-args=', 'a', 'Arguments to pass to tox')]
+
+    def initialize_options(self):
+        TestCommand.initialize_options(self)
+        self.tox_args = None
+
     def finalize_options(self):
         TestCommand.finalize_options(self)
         self.test_args = []
@@ -30,7 +36,11 @@ class Tox(TestCommand):
 
     def run_tests(self):
         import tox
-        errno = tox.cmdline(self.test_args)
+        import shlex
+        if self.tox_args:
+            errno = tox.cmdline(args=shlex.split(self.tox_args))
+        else:
+            errno = tox.cmdline(self.test_args)
         sys.exit(errno)
 
 
@@ -47,14 +57,18 @@ classifiers = [
     "Programming Language :: Python :: 3.3",
     "Programming Language :: Python :: 3.4",
     "Programming Language :: Python :: Implementation :: CPython",
+    "Programming Language :: Python :: Implementation :: PyPy",
     "Topic :: Text Processing :: Markup :: LaTeX",
 ]
 
 long_description = (open("README.rst").read() +
                     open(os.path.join("docs", "HISTORY.rst")).read())
 
-requires = ['setuptools', 'pystache']
+requires = ['setuptools',
+            'pystache']
 
+with open('requirements.txt', 'w') as _file:
+    _file.write('\n'.join(requires))
 
 setup(name='genenga',
       version=__version__,
@@ -64,7 +78,7 @@ setup(name='genenga',
       author='Kouhei Maeda',
       author_email='mkouhei@palmtb.net',
       url='https://github.com/mkouhei/GenNenga',
-      license=' GNU General Public License version 3',
+      license='GNU General Public License version 3',
       classifiers=classifiers,
       packages=find_packages(),
       data_files=[('share/genenga/example',
