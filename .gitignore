@@ -8,3 +8,5 @@
 htmlcov
 requirements.txt
 *.egg/
+_build/
+build/
