@@ -63,7 +63,7 @@ classifiers = [
 ]
 
 long_description = (open("README.rst").read() +
-                    open(os.path.join("docs", "HISTORY.rst")).read())
+                    open(os.path.join("docs/source", "HISTORY.rst")).read())
 
 requires = ['setuptools',
             'pystache']
