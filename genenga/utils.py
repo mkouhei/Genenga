@@ -13,16 +13,6 @@ def error(msg):
     sys.exit(1)
 
 
-def save_file(path, data):
-    """writing data to file.
-
-    :param str path: file path
-    :param data: data
-    """
-    with open(path, 'w') as fobj:
-        fobj.write((data))
-
-
 def check_existence_file(file_path):
     """check exisitence of file.
 

@@ -12,7 +12,8 @@ class UtilsTests(unittest.TestCase):
         self.file_path = '/tmp/genenga_test'
         self.dir_path = '/tmp/genenga_test_dir/'
         self.data = 'testtesttest'
-        utils.save_file(self.file_path, self.data)
+        with open(self.file_path, 'w') as fobj:
+            fobj.write(self.data)
 
     def tearDown(self):
         if os.path.exists(self.dir_path):
@@ -23,11 +24,6 @@ class UtilsTests(unittest.TestCase):
     def test_check_existence_dir(self):
         """ testing check_existence_dir() """
         self.assertTrue(utils.check_existence_dir(self.dir_path))
-
-    def test_save_file(self):
-        """ testing saving file """
-        with open(self.file_path) as fobj:
-            self.assertEquals(fobj.read(), self.data)
 
     def test_check_existence_file(self):
         """ testing check_existence_file() """

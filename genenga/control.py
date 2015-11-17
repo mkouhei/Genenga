@@ -2,7 +2,7 @@
 """genenga.control."""
 import sys
 import pystache
-from genenga import address, utils
+from genenga import address
 
 
 def generate_atena_tex(template, address_file, outfile_path):
@@ -29,4 +29,5 @@ def generate_atena_tex(template, address_file, outfile_path):
     elif sys.version_info > (3, 1):
         data = renderer.render(tmpl, addresses)
 
-    utils.save_file(outfile_path, data)
+    with open(outfile_path, 'w') as fobj:
+        fobj.write(data)
