@@ -2,7 +2,9 @@
 """genenga.command."""
 import argparse
 import os.path
-from genenga import utils, control, __version__, __template__
+from genenga import utils, control, __version__
+
+TEMPLATE = '/usr/share/genenga/template/address.mustache'
 
 
 def parse_options():
@@ -54,12 +56,11 @@ def generate_atena(args):
     if args.address_list:
         if utils.check_existence_file(args.address_list):
             address_list = args.address_list
-
         if utils.check_existence_file(args.template_path):
             tmpl_path = args.template_path
     else:
-        if utils.check_existence_file(__template__):
-            tmpl_path = __template__
+        if utils.check_existence_file(TEMPLATE):
+            tmpl_path = TEMPLATE
 
     if args.destdir:
         if utils.check_existence_dir(args.destdir):
