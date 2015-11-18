@@ -51,18 +51,17 @@ def generate_atena(args):
 
     :param args: command line arguments
     """
-    if args.__dict__.get('address_list'):
+    if args.address_list:
         if utils.check_existence_file(args.address_list):
             address_list = args.address_list
 
-    if args.__dict__.get('template_path'):
         if utils.check_existence_file(args.template_path):
             tmpl_path = args.template_path
     else:
         if utils.check_existence_file(__template__):
             tmpl_path = __template__
 
-    if args.__dict__.get('destdir'):
+    if args.destdir:
         if utils.check_existence_dir(args.destdir):
             destdir = os.path.abspath(args.destdir)
     else:
