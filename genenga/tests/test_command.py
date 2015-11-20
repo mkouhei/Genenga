@@ -60,14 +60,3 @@ class CommamdTests(unittest.TestCase):
                          self.parser.parse_args(
                              '--template_path '
                              'address.mastache'.split()).template_path)
-
-    def test_generate_atena(self):
-        """ testing generate_atena() """
-        c.set_option(self.parser, 'destdir')
-        c.set_option(self.parser, 'template_path')
-        c.set_option(self.parser, 'address_list')
-        args = self.parser.parse_args('-d /tmp/ '
-                                      '-t template/address.mustache '
-                                      'example/address.csv'.split())
-        c.generate_atena(args)
-        self.assertTrue(os.path.exists('/tmp/address.tex'))

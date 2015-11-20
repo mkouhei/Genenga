@@ -1,8 +1,11 @@
 # -*- coding: utf-8 -*-
 """genenga.control."""
+import os
 import sys
 import pystache
-from genenga import address
+from genenga import address, utils
+
+TEMPLATE = '/usr/share/genenga/template/address.mustache'
 
 
 def generate_atena_tex(template, address_file, outfile_path):
@@ -31,3 +34,31 @@ def generate_atena_tex(template, address_file, outfile_path):
 
     with open(outfile_path, 'w') as fobj:
         fobj.write(data)
+
+
+def generate_atena(args):
+    """generate atena.
+
+    :param args: command line arguments
+    """
+    if args.address_list:
+        if utils.check_existence_file(args.address_list):
+            address_list = args.address_list
+        if utils.check_existence_file(args.template_path):
+            tmpl_path = args.template_path
+    else:
+        if utils.check_existence_file(TEMPLATE):
+            tmpl_path = TEMPLATE
+
+    if args.destdir:
+        if utils.check_existence_dir(args.destdir):
+            destdir = os.path.abspath(args.destdir)
+    else:
+        destdir = './'
+
+    srch_dirs = os.path.dirname(tmpl_path)
+    tmpl_name = os.path.basename(tmpl_path).rsplit('.mustache')[0]
+    template = {'search_dirs': srch_dirs, 'template_name': tmpl_name}
+    outfile_path = os.path.join(destdir, tmpl_name + '.tex')
+
+    generate_atena_tex(template, address_list, outfile_path)
