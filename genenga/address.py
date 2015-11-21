@@ -33,38 +33,22 @@ class Address(object):
             # 10: no5 of postal code in Japan
             # 11: no6 of postal code in Japan
             # 12: no7 of postal code in Japan
-
             lines = [line.split(',')
                      for line in fobj
                      if line.split(',')[0] == '1']
             for record in lines:
-                if len(record) == 14:
-                    address.append(
-                        {"last_name": record[1],
-                         "first_name1": record[2],
-                         "first_name2": record[3],
-                         "address": record[4],
-                         "address2": record[5],
-                         "no1": record[6],
-                         "no2": record[7],
-                         "no3": record[8],
-                         "no4": record[9],
-                         "no5": record[10],
-                         "no6": record[11],
-                         "no7": record[12],
-                         "address3": record[13]})
-                else:
-                    address.append(
-                        {"last_name": record[1],
-                         "first_name1": record[2],
-                         "first_name2": record[3],
-                         "address": record[4],
-                         "address2": record[5],
-                         "no1": record[6],
-                         "no2": record[7],
-                         "no3": record[8],
-                         "no4": record[9],
-                         "no5": record[10],
-                         "no6": record[11],
-                         "no7": record[12]})
+                address.append(
+                    {"last_name": record[1],
+                     "first_name1": record[2],
+                     "first_name2": record[3],
+                     "address": record[4],
+                     "address2": record[5],
+                     "address3": record[6],
+                     "no1": record[7],
+                     "no2": record[8],
+                     "no3": record[9],
+                     "no4": record[10],
+                     "no5": record[11],
+                     "no6": record[12],
+                     "no7": record[13]})
         return address
