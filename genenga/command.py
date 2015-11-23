@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """genenga.command."""
 import argparse
-from genenga import utils, control, __version__
+from genenga import utils, control, convert, __version__
 
 
 def parse_options():
@@ -13,9 +13,6 @@ def parse_options():
     set_option(prs, 'destdir')
     set_option(prs, 'address_list')
     set_option(prs, 'template_path')
-
-    prs.set_defaults(func=control.generate_atena)
-
     args = prs.parse_args()
     return args
 
@@ -49,7 +46,9 @@ def main():
     """main function."""
     try:
         args = parse_options()
-        args.func(args)
+        convt = convert.Convert()
+        convt.convert_from_argparse(args)
+        control.generate_atena(convt)
     except RuntimeError as error:
         utils.error(error)
     except UnboundLocalError as error:
