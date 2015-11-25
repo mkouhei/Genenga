@@ -36,23 +36,23 @@ def generate_atena_tex(template, address_file, outfile_path):
         fobj.write(data)
 
 
-def generate_atena(args):
+def generate_atena(convt):
     """generate atena.
 
-    :param args: command line arguments
+    :param convt: command line arguments
     """
-    if args.address_list:
-        if utils.check_existence_file(args.address_list):
-            address_list = args.address_list
-        if utils.check_existence_file(args.template_path):
-            tmpl_path = args.template_path
+    if convt.address_list:
+        if utils.check_existence_file(convt.address_list):
+            address_list = convt.address_list
+        if utils.check_existence_file(convt.template_path):
+            tmpl_path = convt.template_path
     else:
         if utils.check_existence_file(TEMPLATE):
             tmpl_path = TEMPLATE
 
-    if args.destdir:
-        if utils.check_existence_dir(args.destdir):
-            destdir = os.path.abspath(args.destdir)
+    if convt.destdir:
+        if utils.check_existence_dir(convt.destdir):
+            destdir = os.path.abspath(convt.destdir)
     else:
         destdir = './'
 
