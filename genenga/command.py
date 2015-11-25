@@ -13,8 +13,7 @@ def parse_options():
     set_option(prs, 'destdir')
     set_option(prs, 'address_list')
     set_option(prs, 'template_path')
-    args = prs.parse_args()
-    return args
+    return prs.parse_args()
 
 
 def set_option(parser, keyword):
@@ -45,9 +44,8 @@ def set_option(parser, keyword):
 def main():
     """main function."""
     try:
-        args = parse_options()
         convt = convert.Convert()
-        convt.convert_from_argparse(args)
+        convt.convert_from_argparse(parse_options())
         control.generate_atena(convt)
     except RuntimeError as error:
         utils.error(error)
