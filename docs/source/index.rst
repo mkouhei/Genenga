@@ -12,6 +12,7 @@ Contents:
    :maxdepth: 2
 
    README
+   modules/index
 
 .. toctree::
    :maxdepth: 1
