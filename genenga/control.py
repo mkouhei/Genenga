@@ -5,8 +5,6 @@ import sys
 import pystache
 from genenga import address, utils
 
-TEMPLATE = '/usr/share/genenga/template/address.mustache'
-
 
 def generate_atena_tex(template, address_file, outfile_path):
     """generate atena TeX file.
@@ -15,10 +13,8 @@ def generate_atena_tex(template, address_file, outfile_path):
     :param address_file: address list csv file
     :param outfile_path: output TeX file path
     """
-    s_dirs = template.get('search_dirs')
-
     renderer = pystache.Renderer(file_encoding='utf-8',
-                                 search_dirs=s_dirs,
+                                 search_dirs=template.get('search_dirs'),
                                  string_encoding='utf-8')
     # set template
     tmpl = renderer.load_template(template.get('template_name'))
@@ -41,24 +37,20 @@ def generate_atena(convt):
 
     :param convt: command line arguments
     """
-    if convt.address_list:
-        if utils.check_existence_file(convt.address_list):
-            address_list = convt.address_list
-        if utils.check_existence_file(convt.template_path):
-            tmpl_path = convt.template_path
-    else:
-        if utils.check_existence_file(TEMPLATE):
-            tmpl_path = TEMPLATE
+    if convt.address_list and utils.check_existence_file(convt.address_list):
+        address_list = convt.address_list
+    if utils.check_existence_file(convt.template_path):
+        tmpl_path = convt.template_path
 
     if convt.destdir:
         if utils.check_existence_dir(convt.destdir):
             destdir = os.path.abspath(convt.destdir)
     else:
-        destdir = './'
+        destdir = os.path.curdir
 
     srch_dirs = os.path.dirname(tmpl_path)
     tmpl_name = os.path.basename(tmpl_path).rsplit('.mustache')[0]
     template = {'search_dirs': srch_dirs, 'template_name': tmpl_name}
-    outfile_path = os.path.join(destdir, tmpl_name + '.tex')
+    outfile_path = os.path.join(destdir, '{0}.tex'.format(tmpl_name))
 
     generate_atena_tex(template, address_list, outfile_path)

@@ -3,6 +3,8 @@
 import argparse
 from genenga import utils, control, convert, __version__
 
+TEMPLATE = 'address.mustache'
+
 
 def parse_options():
     """parse options."""
@@ -37,7 +39,8 @@ def set_option(parser, keyword):
     if keyword == 'template_path':
         # using template name
         parser.add_argument(
-            '-t', '--template_path', action='store', required=True,
+            '-t', '--template_path', action='store',
+            default=TEMPLATE,
             help='pystache template file path')
 
 
@@ -47,11 +50,8 @@ def main():
         convt = convert.Convert()
         convt.convert_from_argparse(parse_options())
         control.generate_atena(convt)
-    except RuntimeError as error:
+    except (RuntimeError, UnboundLocalError) as error:
         utils.error(error)
-    except UnboundLocalError as error:
-        utils.error(error)
-
 
 if __name__ == '__main__':
     main()
