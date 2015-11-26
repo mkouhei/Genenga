@@ -11,6 +11,9 @@ a.k.a. "Nengajo" in Japanese.
    :target: https://coveralls.io/r/mkouhei/Genenga?branch=master
 .. image:: https://pypip.in/v/Genenga/badge.png
    :target: https://crate.io/packages/Genenga
+.. image:: http://readthedocs.org/projects/genenga/badge/?version=latest
+   :target: http://genenga.readthedocs.org/en/latest/?badge=latest
+   :alt: Documentation Status
 
 Requirement
 -----------
