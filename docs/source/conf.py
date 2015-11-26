@@ -28,6 +28,7 @@
 # ones.
 extensions = [
     'sphinx.ext.autodoc',
+    'sphinx.ext.coverage',
     'sphinx.ext.viewcode',
 ]
 
@@ -47,7 +48,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Genenga'
-copyright = '2015, Kouhei Maeda'
+copyright = '2012-2015, Kouhei Maeda <mkouhei@palmtb.net>'
 author = 'Kouhei Maeda'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -55,7 +56,7 @@ author = 'Kouhei Maeda'
 # built documents.
 #
 # The short X.Y version.
-version = '0.4.1'
+version = '0.4'
 # The full version, including alpha/beta/rc tags.
 release = '0.4.1'
 
@@ -282,3 +283,5 @@ texinfo_documents = [
 
 # If true, do not generate a @detailmenu in the "Top" node's menu.
 # texinfo_no_detailmenu = False
+
+autodoc_member_order = 'bysource'
