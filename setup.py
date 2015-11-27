@@ -44,6 +44,11 @@ class Tox(TestCommand):
         sys.exit(errno)
 
 
+def read_content(filepath):
+    with open(filepath) as fobj:
+        return fobj.read()
+
+
 classifiers = [
     "Development Status :: 4 - Beta",
     "License :: OSI Approved :: "
@@ -62,8 +67,9 @@ classifiers = [
     "Topic :: Text Processing :: Markup :: LaTeX",
 ]
 
-long_description = (open("README.rst").read() +
-                    open(os.path.join("docs/source", "HISTORY.rst")).read())
+long_description = (
+    read_content("README.rst") +
+    read_content(os.path.join("docs/source", "HISTORY.rst")))
 
 requires = ['setuptools',
             'pystache']
