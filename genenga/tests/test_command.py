@@ -4,7 +4,8 @@ import sys
 import os
 import unittest
 import argparse
-from genenga import command as c
+from genenga import command
+# pylint: disable=wrong-import-order
 if sys.version_info < (3, 0):
     from StringIO import StringIO
 else:
@@ -30,13 +31,13 @@ class CommamdTests(unittest.TestCase):
     def test_parse_options_fail(self):
         """ testing parse_options() """
         with self.assertRaises(SystemExit) as error:
-            c.parse_options()
+            command.parse_options()
         self.assertEqual(2, error.exception.code)
         self.assertTrue(sys.stderr.getvalue())
 
     def test_set_option_destdir(self):
         """ testing set_option() """
-        c.set_option(self.parser, 'destdir')
+        command.set_option(self.parser, 'destdir')
         self.assertEqual('/tmp',
                          self.parser.parse_args('-d /tmp'.split()).destdir)
         self.assertEqual('/tmp/foo',
@@ -45,14 +46,14 @@ class CommamdTests(unittest.TestCase):
 
     def test_set_option_address_list(self):
         """ testing set_option() """
-        c.set_option(self.parser, 'address_list')
+        command.set_option(self.parser, 'address_list')
         self.assertEqual('address.csv',
                          self.parser.parse_args(
                              'address.csv'.split()).address_list)
 
     def test_set_option_template_path(self):
         """ testing set_option() """
-        c.set_option(self.parser, 'template_path')
+        command.set_option(self.parser, 'template_path')
         self.assertEqual('address.mastache',
                          self.parser.parse_args(
                              '-t address.mastache'.split()).template_path)

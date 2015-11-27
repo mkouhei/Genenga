@@ -26,6 +26,7 @@ def generate_atena_tex(template, address_file, outfile_path):
     if sys.version_info > (2, 6) and sys.version_info < (3, 0):
         data = renderer.render(tmpl, addresses).encode('utf-8')
     elif sys.version_info > (3, 1):
+        # pylint: disable=redefined-variable-type
         data = renderer.render(tmpl, addresses)
 
     with open(outfile_path, 'w') as fobj:
