@@ -21,8 +21,8 @@ def parse_options():
 def set_option(parser, keyword):
     """set options by keyword.
 
-    :param parser: object of argparser
-    :param keyword: keyword of option
+    :param `argparse.ArgumentParser` parser: object of argparser
+    :param str keyword: keyword of option
     """
     if keyword == 'destdir':
         # output file of directory path

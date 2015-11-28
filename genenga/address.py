@@ -3,7 +3,7 @@
 
 
 class Address(object):
-    """Dict format of Address."""
+    """Address data."""
 
     def __init__(self, infile):
         """Initialize Address.
@@ -25,14 +25,15 @@ class Address(object):
             # 2: first_name1 destination first name (required)
             # 3: first_name2 destination partner first name (optional)
             # 4: address
-            # 5: address2 detail address
-            # 6: no1 of postal code in Japan
-            # 7: no2 of postal code in Japan
-            # 8: no3 of postal code in Japan
-            # 9: no4 of postal code in Japan
-            # 10: no5 of postal code in Japan
-            # 11: no6 of postal code in Japan
-            # 12: no7 of postal code in Japan
+            # 5: address2 detail address (optional)
+            # 6: address3 detail address (optional)
+            # 7: no1 of postal code in Japan
+            # 8: no2 of postal code in Japan
+            # 9: no3 of postal code in Japan
+            # 10: no4 of postal code in Japan
+            # 11: no5 of postal code in Japan
+            # 12: no6 of postal code in Japan
+            # 13: no7 of postal code in Japan
             lines = [line.split(',')
                      for line in fobj
                      if line.split(',')[0] == '1']

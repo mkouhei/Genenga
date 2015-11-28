@@ -9,9 +9,9 @@ from genenga import address, utils
 def generate_atena_tex(template, address_file, outfile_path):
     """generate atena TeX file.
 
-    :param template: template dictionary
-    :param address_file: address list csv file
-    :param outfile_path: output TeX file path
+    :param str template: template dictionary
+    :param str address_file: address list csv file
+    :param str outfile_path: output TeX file path
     """
     renderer = pystache.Renderer(file_encoding='utf-8',
                                  search_dirs=template.get('search_dirs'),
@@ -36,7 +36,7 @@ def generate_atena_tex(template, address_file, outfile_path):
 def generate_atena(convt):
     """generate atena.
 
-    :param convt: command line arguments
+    :param `convert.Convert` convt: intermediate object for converting address.
     """
     if convt.address_list and utils.check_existence_file(convt.address_list):
         address_list = convt.address_list
