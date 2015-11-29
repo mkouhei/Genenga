@@ -37,7 +37,7 @@ format of address.csv
 
 address list is CSV. It is syntax is below::
 
-   flag,PersonLastName,PersonFirstName1,PersonFirstName2,address,address2,address3,PostalCode1,PostalCode2,PostalCode3,PostalCode4,PostalCode5,PostalCode6,PostalCode7
+   status,PersonLastName,PersonFirstName1,PersonFirstName2,address,address2,address3,PostalCode1,PostalCode2,PostalCode3,PostalCode4,PostalCode5,PostalCode6,PostalCode7
 
 
 Example
@@ -66,6 +66,10 @@ Usage
 -----
 
 #. Update address.csv
+
+   #. Reset last year status.
+   #. Update latest status.
+   
 #. convert photo, extractbb photoimage
 #. edit nenga-yoko.tex
 #. make, generate nenga-yoko.pdf, print this pdf
