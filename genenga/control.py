@@ -20,7 +20,7 @@ def generate_atena_tex(template, address_file, outfile_path):
     tmpl = renderer.load_template(template.get('template_name'))
 
     # load address data
-    addresses = address.Address(address_file)
+    addresses = address.csv2addr(address_file)
 
     # generate atena TeX data
     if sys.version_info > (2, 6) and sys.version_info < (3, 0):

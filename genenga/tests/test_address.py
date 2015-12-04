@@ -34,8 +34,15 @@ class AddressTests(unittest.TestCase):
              'address': '神奈川県横浜市こねこ町０ー０',
              'no1': '0', 'no2': '0', 'no3': '0'}]
 
-    def test_addrss(self):
+    def test_csv2addr(self):
         """ tesging address() """
-        addr = a.Address(self.infile)
-        self.assertFalse(self.dict, addr.address())
-        self.assertTrue(self.address, addr.address())
+        atena = a.csv2addr(self.infile)
+        self.assertEqual(len(atena.get('address')), 4)
+        self.assertTrue(atena['address'][0].get('address'))
+        self.assertEqual(atena['address'][0].get('address2'), '')
+        self.assertEqual(atena['address'][0].get('address3'), '')
+        self.assertTrue(atena['address'][0].get('first_name1'))
+        self.assertTrue(atena['address'][0].get('first_name2'))
+        self.assertTrue(atena['address'][0].get('last_name'))
+        self.assertTrue(atena['address'][0].get('no1'))
+        self.assertTrue(atena['address'][0].get('no7'))

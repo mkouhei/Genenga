@@ -1,55 +1,130 @@
 # -*- coding: utf-8 -*-
 """genenga.address."""
+import re
+
+
+def gen_atena(record):
+    """generate atena object."""
+    # 1: last name (required)
+    # 2: first_name (required)
+    # 3: another person's first_name (optional)
+    # 4: address (prefectures + city + address)
+    # 5: building (optional)
+    # 6: extra (optional)
+    # 7: no1 of postal code in Japan
+    # 8: no2 of postal code in Japan
+    # 9: no3 of postal code in Japan
+    # 10: no4 of postal code in Japan
+    # 11: no5 of postal code in Japan
+    # 12: no6 of postal code in Japan
+    # 13: no7 of postal code in Japan
+    return Atena(Person(record[2], record[1]),
+                 Person(record[3], record[1]),
+                 PostalCode(''.join([record[i] for i in range(7, 14)])),
+                 Address(record[4], record[5], record[6]))
+
+
+def csv2addr(address_file):
+    """convert csv to address."""
+    with open(address_file) as fobj:
+        lines = [line.split(',') for line in fobj
+                 if line.split(',')[0] == '1']
+    return dict(address=[atena2dict(gen_atena(record)) for record in lines
+                         if record[0] == '1'])
+
+
+def atena2dict(atena):
+    """deprecated."""
+    return dict(last_name=atena.person.last_name,
+                first_name1=atena.person.first_name,
+                first_name2=atena.another_person.first_name,
+                address=atena.address.address0,
+                address2=atena.address.address1,
+                address3=atena.address.address2,
+                no1=atena.postal_code.no0,
+                no2=atena.postal_code.no1,
+                no3=atena.postal_code.no2,
+                no4=atena.postal_code.no3,
+                no5=atena.postal_code.no4,
+                no6=atena.postal_code.no5,
+                no7=atena.postal_code.no6)
+
+
+class Person(object):
+    """Person class."""
+
+    def __init__(self, first_name, last_name):
+        """initialize Person."""
+        if first_name is not None:
+            self.first_name = first_name
+        else:
+            self.first_name = ''
+        self.last_name = last_name
+
+
+class PostalCode(object):
+    """The Japanese postal code class."""
+
+    def __init__(self, postal_code):
+        """initialize PostalCode."""
+        parsed_code = self.parse_postal_code(postal_code)
+        self.no0 = parsed_code[0]
+        self.no1 = parsed_code[1]
+        self.no2 = parsed_code[2]
+        self.no3 = parsed_code[3]
+        self.no4 = parsed_code[4]
+        self.no5 = parsed_code[5]
+        self.no6 = parsed_code[6]
+
+    @staticmethod
+    def parse_postal_code(postal_code):
+        """parse postal code string."""
+        pat_numonly = re.compile(r'\A\d{7}(\n)?\Z')
+        pat_hyphen = re.compile(r'\A\d{3}-\d{4}(\n)?\Z')
+        if pat_numonly.match(postal_code):
+            return postal_code.rstrip()
+        elif pat_hyphen.match(postal_code):
+            return ''.join(postal_code.rstrip().split('-'))
+        else:
+            # Should add error handling.
+            pass
 
 
 class Address(object):
-    """Address data."""
+    """Address class."""
 
-    def __init__(self, infile):
-        """Initialize Address.
+    def __init__(self, *args, **kwargs):
+        """initialize Address."""
+        self.prefectures = kwargs.get('prefectures')
+        self.city = kwargs.get('city')
+        self.address = kwargs.get('address')
+        self.building = kwargs.get('building')
+        self.extra = kwargs.get('extra')
 
-        :param str infile: infile path
-        """
-        self.address_file = infile
+        if args:
+            self.address0 = args[0]
+            if len(args) > 1:
+                self.address1 = args[1]
+            if len(args) > 2:
+                self.address2 = args[2]
+        else:
+            self.convert_deprecated()
 
-    def address(self):
-        """convert list of Addresses data from CSV to Dict.
+    def convert_deprecated(self):
+        """convert deprecated format."""
+        self.address0 = '{0}{1}{2}'.format(self.prefectures,
+                                           self.city,
+                                           self.address)
+        self.address1 = self.building
+        self.address2 = self.extra
 
-        :rtype: list
-        :return: address dict
-        """
-        address = []
-        with open(self.address_file) as fobj:
-            # 0: 1 is enable, other than 1 is disable.
-            # 1: last_name destination last(family) name (required)
-            # 2: first_name1 destination first name (required)
-            # 3: first_name2 destination partner first name (optional)
-            # 4: address
-            # 5: address2 detail address (optional)
-            # 6: address3 detail address (optional)
-            # 7: no1 of postal code in Japan
-            # 8: no2 of postal code in Japan
-            # 9: no3 of postal code in Japan
-            # 10: no4 of postal code in Japan
-            # 11: no5 of postal code in Japan
-            # 12: no6 of postal code in Japan
-            # 13: no7 of postal code in Japan
-            lines = [line.split(',')
-                     for line in fobj
-                     if line.split(',')[0] == '1']
-            for record in lines:
-                address.append(
-                    {"last_name": record[1],
-                     "first_name1": record[2],
-                     "first_name2": record[3],
-                     "address": record[4],
-                     "address2": record[5],
-                     "address3": record[6],
-                     "no1": record[7],
-                     "no2": record[8],
-                     "no3": record[9],
-                     "no4": record[10],
-                     "no5": record[11],
-                     "no6": record[12],
-                     "no7": record[13]})
-        return address
+
+class Atena(object):
+    """Atena."""
+
+    def __init__(self, person, another_person, postal_code, address):
+        """Initialize Atena."""
+        self.person = person
+        self.another_person = another_person
+        self.postal_code = postal_code
+        self.address = address
