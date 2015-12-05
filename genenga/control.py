@@ -3,7 +3,7 @@
 import os
 import sys
 import pystache
-from genenga import address, utils
+from genenga import utils, convert
 
 
 def generate_atena_tex(template, address_file, outfile_path):
@@ -20,7 +20,7 @@ def generate_atena_tex(template, address_file, outfile_path):
     tmpl = renderer.load_template(template.get('template_name'))
 
     # load address data
-    addresses = address.csv2addr(address_file)
+    addresses = convert.csv2addr(address_file)
 
     # generate atena TeX data
     if sys.version_info > (2, 6) and sys.version_info < (3, 0):
