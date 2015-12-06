@@ -1,11 +1,11 @@
 # -*- coding: utf-8 -*-
-"""genenga.tests.test_address."""
+"""genenga.tests.test_convert."""
 import unittest
 from genenga import convert
 
 
-class AddressTests(unittest.TestCase):
-    """ tests for address module """
+class ConvertTests(unittest.TestCase):
+    """ tests for convert module """
 
     def setUp(self):
         self.infile = 'example/address.csv'
@@ -35,7 +35,7 @@ class AddressTests(unittest.TestCase):
              'no1': '0', 'no2': '0', 'no3': '0'}]
 
     def test_csv2addr(self):
-        """ tesging address() """
+        """ tesging csv2addr() """
         atena = convert.csv2addr(self.infile)
         self.assertEqual(len(atena.get('address')), 4)
         self.assertTrue(atena['address'][0].get('address'))
