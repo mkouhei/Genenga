@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """genenga.convert."""
-from genenga.address import Atena, Person, PostalCode, Address
+from genenga.models import Atena, Person, PostalCode, Address
 
 
 class Convert(object):

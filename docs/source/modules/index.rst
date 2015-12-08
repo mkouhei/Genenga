@@ -15,7 +15,7 @@
    :show-inheritance:
    :inherited-members:
 
-.. automodule:: genenga.address
+.. automodule:: genenga.models
    :members:
    :show-inheritance:
    :inherited-members:
