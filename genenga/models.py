@@ -6,7 +6,7 @@ import re
 class Person(object):
     """Person class."""
 
-    def __init__(self, first_name, last_name):
+    def __init__(self, first_name, last_name=''):
         """initialize Person."""
         if first_name is not None:
             self.first_name = first_name
