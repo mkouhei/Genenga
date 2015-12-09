@@ -9,7 +9,7 @@ class ConvertTests(unittest.TestCase):
 
     def setUp(self):
         self.infile = 'example/address.csv'
-        self.dict = {}
+        self.conv = convert.Convert()
         self.address = [
             {'no7': '0',
              'name2': 'ねこちゃん',
@@ -33,6 +33,14 @@ class ConvertTests(unittest.TestCase):
              'no4': '0', 'no5': '0', 'no6': '0',
              'address': '神奈川県横浜市こねこ町０ー０',
              'no1': '0', 'no2': '0', 'no3': '0'}]
+
+    def test_set_param(self):
+        """set_param."""
+        # pylint: disable=no-member
+        self.conv.set_param('foo', 'hoge')
+        self.assertEqual(self.conv.foo, 'hoge')
+        self.conv.set_param('bar', 0)
+        self.assertEqual(self.conv.bar, 0)
 
     def test_csv2addr(self):
         """ tesging csv2addr() """
