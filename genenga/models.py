@@ -8,7 +8,7 @@ class Person(object):
 
     def __init__(self, first_name, last_name=''):
         """initialize Person."""
-        if first_name is not None:
+        if first_name:
             self.first_name = first_name
         else:
             self.first_name = ''
