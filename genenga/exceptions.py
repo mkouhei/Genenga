@@ -14,3 +14,9 @@ class InvalidFormat(Error):
     """Invalid format."""
 
     pass
+
+
+class NotFound(Error):
+    """not found."""
+
+    pass

@@ -2,6 +2,7 @@
 """genenga.utils."""
 import os
 import sys
+from genenga.exceptions import NotFound
 
 
 def error(msg):
@@ -22,8 +23,7 @@ def check_existence_file(file_path):
     if os.path.isfile(file_path):
         return True
     else:
-        error("No such file %s" % file_path)
-        return False
+        raise NotFound('No such file {0}'.format(file_path))
 
 
 def check_existence_dir(dir_path):
