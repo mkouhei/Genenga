@@ -2,6 +2,7 @@
 """genenga.tests.test_models."""
 import unittest
 from genenga import models
+from genenga.exceptions import InvalidFormat
 
 
 class ModelsTests(unittest.TestCase):
@@ -40,6 +41,11 @@ class ModelsTests(unittest.TestCase):
         self.assertEqual('5', another_format.no4)
         self.assertEqual('6', another_format.no5)
         self.assertEqual('7', another_format.no6)
+
+    def test_invalid_postal_code(self):
+        """invalid postal code."""
+        with self.assertRaises(InvalidFormat):
+            models.PostalCode('123 4567')
 
     def test_address_deprecated_format(self):
         """deprecated format address."""

@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 """genenga.address."""
 import re
+from genenga.exceptions import InvalidFormat
 
 
 class Person(object):
@@ -39,8 +40,7 @@ class PostalCode(object):
         elif pat_hyphen.match(postal_code):
             return ''.join(postal_code.rstrip().split('-'))
         else:
-            # Should add error handling.
-            pass
+            raise InvalidFormat('The postal code is not supported format.')
 
 
 class Address(object):

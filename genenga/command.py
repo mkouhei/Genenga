@@ -2,6 +2,7 @@
 """genenga.command."""
 import argparse
 from genenga import utils, control, convert, __version__
+from genenga.exceptions import InvalidFormat
 
 TEMPLATE = 'address.mustache'
 
@@ -50,7 +51,7 @@ def main():
         convt = convert.Convert()
         convt.convert_from_argparse(parse_options())
         control.generate_atena(convt)
-    except (RuntimeError, UnboundLocalError) as error:
+    except (RuntimeError, UnboundLocalError, InvalidFormat) as error:
         utils.error(error)
 
 if __name__ == '__main__':
