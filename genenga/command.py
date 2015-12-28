@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
 """genenga.command."""
+import sys
 import argparse
-from genenga import utils, control, convert, __version__
-from genenga.exceptions import InvalidFormat
+from genenga import control, convert, __version__
+from genenga.exceptions import InvalidFormat, NotFound
 
 TEMPLATE = 'address.mustache'
 
@@ -51,8 +52,8 @@ def main():
         convt = convert.Convert()
         convt.convert_from_argparse(parse_options())
         control.generate_atena(convt)
-    except (RuntimeError, UnboundLocalError, InvalidFormat) as error:
-        utils.error(error)
+    except (RuntimeError, UnboundLocalError, InvalidFormat, NotFound) as exc:
+        sys.stderr.write('ERROR: {0}\n'.format(exc))
 
 if __name__ == '__main__':
     main()

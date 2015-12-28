@@ -1,17 +1,7 @@
 # -*- coding: utf-8 -*-
 """genenga.utils."""
 import os
-import sys
 from genenga.exceptions import NotFound
-
-
-def error(msg):
-    """print Error mesage and sys.exit(1).
-
-    :param str msg: error message
-    """
-    print("ERROR: %s" % msg)
-    sys.exit(1)
 
 
 def check_existence_file(file_path):

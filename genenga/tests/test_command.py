@@ -61,3 +61,8 @@ class CommamdTests(unittest.TestCase):
                          self.parser.parse_args(
                              '--template_path '
                              'address.mastache'.split()).template_path)
+
+    def test_main_fail(self):
+        """test main fail."""
+        with self.assertRaises(SystemExit):
+            command.main()
