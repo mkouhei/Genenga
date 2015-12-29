@@ -5,7 +5,7 @@ from genenga import convert
 
 
 class ConvertTests(unittest.TestCase):
-    """ tests for convert module """
+    """tests for convert module."""
 
     def setUp(self):
         self.infile = 'example/address.csv'
@@ -43,7 +43,7 @@ class ConvertTests(unittest.TestCase):
         self.assertEqual(self.conv.bar, 0)
 
     def test_csv2addr(self):
-        """ tesging csv2addr() """
+        """tesging csv2addr()."""
         atena = convert.csv2addr(self.infile)
         self.assertEqual(len(atena.get('address')), 4)
         self.assertTrue(atena['address'][0].get('address'))
