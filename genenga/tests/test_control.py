@@ -3,6 +3,7 @@
 import os
 import argparse
 import unittest
+import tempfile
 from genenga import command, control
 from genenga.exceptions import NotFound
 
@@ -47,3 +48,20 @@ class ControlTests(unittest.TestCase):
         """check_existence_files test."""
         with self.assertRaises(NotFound):
             control.check_existence_files('/path/to/dummy', '/dummy/file/path')
+
+    def test_check_existence_dir(self):
+        """check_existence_dir test."""
+        dirpath = tempfile.mkdtemp()
+        self.assertEquals(control.check_existence_dir(dirpath), dirpath)
+        os.removedirs(dirpath)
+
+    def test_check_existence_dir_nodir(self):
+        """check_existence_dir test."""
+        dirpath = tempfile.mkdtemp()
+        os.removedirs(dirpath)
+        self.assertEquals(control.check_existence_dir(dirpath), dirpath)
+        os.removedirs(dirpath)
+
+    def test_check_existence_dir_noarg(self):
+        """check_existence_dir test."""
+        self.assertEquals(control.check_existence_dir(), os.path.curdir)

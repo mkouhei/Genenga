@@ -45,23 +45,30 @@ def check_existence_files(*args):
             raise NotFound('No such file {0}'.format(filepath))
 
 
+def check_existence_dir(dirpath=None):
+    """check directory existence.
+
+    :rtype: str
+    :return: directory path
+    :param str path: directory path
+    """
+    if dirpath:
+        if not os.path.isdir(dirpath):
+            os.mkdir(dirpath)
+        return dirpath
+    else:
+        return os.path.curdir
+
+
 def generate_atena(convt):
     """generate atena.
 
     :param `convert.Convert` convt: intermediate object for converting address.
     """
     check_existence_files(convt.address_list, convt.template_path)
-
-    if convt.destdir:
-        destdir = convt.destdir
-        if not os.path.isdir(destdir):
-            os.mkdir(destdir)
-    else:
-        destdir = os.path.curdir
-
+    destdir = check_existence_dir(convt.destdir)
     srch_dirs = os.path.dirname(convt.template_path)
     tmpl_name = os.path.basename(convt.template_path).rsplit('.mustache')[0]
     template = {'search_dirs': srch_dirs, 'template_name': tmpl_name}
     outfile_path = os.path.join(destdir, '{0}.tex'.format(tmpl_name))
-
     generate_atena_tex(template, convt.address_list, outfile_path)
