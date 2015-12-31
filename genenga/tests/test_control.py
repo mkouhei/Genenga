@@ -4,6 +4,7 @@ import os
 import argparse
 import unittest
 from genenga import command, control
+from genenga.exceptions import NotFound
 
 
 class ControlTests(unittest.TestCase):
@@ -41,3 +42,8 @@ class ControlTests(unittest.TestCase):
                                       'example/address.csv'.split())
         control.generate_atena(args)
         self.assertTrue(os.path.exists('/tmp/address.tex'))
+
+    def test_check_existence_files(self):
+        """check_existence_files test."""
+        with self.assertRaises(NotFound):
+            control.check_existence_files('/path/to/dummy', '/dummy/file/path')

@@ -3,7 +3,8 @@
 import os
 import sys
 import pystache
-from genenga import utils, convert
+from genenga import convert
+from genenga.exceptions import NotFound
 
 
 def generate_atena_tex(template, address_file, outfile_path):
@@ -33,15 +34,26 @@ def generate_atena_tex(template, address_file, outfile_path):
         fobj.write(data)
 
 
+def check_existence_files(*args):
+    """check exisitence of files.
+
+    :rtype: bool
+    :param str path: file path
+    """
+    for filepath in args:
+        if not os.path.isfile(filepath):
+            raise NotFound('No such file {0}'.format(filepath))
+
+
 def generate_atena(convt):
     """generate atena.
 
     :param `convert.Convert` convt: intermediate object for converting address.
     """
-    if convt.address_list and utils.check_existence_file(convt.address_list):
-        address_list = convt.address_list
-    if utils.check_existence_file(convt.template_path):
-        tmpl_path = convt.template_path
+    check_existence_files(convt.address_list, convt.template_path)
+
+    address_list = convt.address_list
+    tmpl_path = convt.template_path
 
     if convt.destdir:
         destdir = convt.destdir
