@@ -14,14 +14,3 @@ def check_existence_file(file_path):
         return True
     else:
         raise NotFound('No such file {0}'.format(file_path))
-
-
-def check_existence_dir(dir_path):
-    """check exisitence of directory.
-
-    :rtype: bool
-    :param str dir_path: directory path
-    """
-    if not os.path.isdir(dir_path):
-        os.mkdir(dir_path)
-    return dir_path

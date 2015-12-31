@@ -44,8 +44,9 @@ def generate_atena(convt):
         tmpl_path = convt.template_path
 
     if convt.destdir:
-        if utils.check_existence_dir(convt.destdir):
-            destdir = os.path.abspath(convt.destdir)
+        destdir = convt.destdir
+        if not os.path.isdir(destdir):
+            os.mkdir(destdir)
     else:
         destdir = os.path.curdir
 
