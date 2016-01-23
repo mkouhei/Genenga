@@ -4,12 +4,8 @@ import sys
 import os
 import unittest
 import argparse
+from six import StringIO
 from genenga import command
-# pylint: disable=wrong-import-order
-if sys.version_info < (3, 0):
-    from StringIO import StringIO
-else:
-    from io import StringIO
 
 
 class CommamdTests(unittest.TestCase):
