@@ -31,7 +31,7 @@ class ControlTests(unittest.TestCase):
                                    self.outfile_path)
         with open(self.outfile_path) as fobj:
             data = fobj.read()
-            self.assertEquals(self.tex_data, data)
+            self.assertEqual(self.tex_data, data)
 
     def test_generate_atena(self):
         """testing generate_atena()."""
@@ -52,16 +52,16 @@ class ControlTests(unittest.TestCase):
     def test_check_existence_dir(self):
         """check_existence_dir test."""
         dirpath = tempfile.mkdtemp()
-        self.assertEquals(control.check_existence_dir(dirpath), dirpath)
+        self.assertEqual(control.check_existence_dir(dirpath), dirpath)
         os.removedirs(dirpath)
 
     def test_check_existence_dir_nodir(self):
         """check_existence_dir test."""
         dirpath = tempfile.mkdtemp()
         os.removedirs(dirpath)
-        self.assertEquals(control.check_existence_dir(dirpath), dirpath)
+        self.assertEqual(control.check_existence_dir(dirpath), dirpath)
         os.removedirs(dirpath)
 
     def test_check_existence_dir_noarg(self):
         """check_existence_dir test."""
-        self.assertEquals(control.check_existence_dir(), os.path.curdir)
+        self.assertEqual(control.check_existence_dir(), os.path.curdir)
