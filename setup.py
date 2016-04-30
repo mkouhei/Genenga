@@ -72,7 +72,8 @@ long_description = (
     read_content(os.path.join("docs/source", "HISTORY.rst")))
 
 requires = ['setuptools',
-            'pystache']
+            'pystache',
+            'pguard']
 
 with open('requirements.txt', 'w') as _file:
     _file.write('\n'.join(requires))

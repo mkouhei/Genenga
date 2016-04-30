@@ -3,6 +3,8 @@
 import os
 import sys
 import pystache
+from pguard import guard
+from pguard import guard_cl as g
 from genenga import convert
 from genenga.exceptions import NotFound
 
@@ -24,11 +26,9 @@ def generate_atena_tex(template, address_file, outfile_path):
     addresses = convert.csv2addr(address_file)
 
     # generate atena TeX data
-    if sys.version_info > (2, 6) and sys.version_info < (3, 0):
-        data = renderer.render(tmpl, addresses).encode('utf-8')
-    elif sys.version_info > (3, 1):
-        # pylint: disable=redefined-variable-type
-        data = renderer.render(tmpl, addresses)
+    data = guard(
+        g(renderer.render(tmpl, addresses), sys.version_info > (3, 1)),
+        g(renderer.render(tmpl, addresses).encode('utf-8')))
 
     with open(outfile_path, 'w') as fobj:
         fobj.write(data)
