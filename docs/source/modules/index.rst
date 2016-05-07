@@ -20,7 +20,7 @@
    :show-inheritance:
    :inherited-members:
 
-.. automodule:: genenga.utils
+.. automodule:: genenga.exceptions
    :members:
    :show-inheritance:
    :inherited-members:
