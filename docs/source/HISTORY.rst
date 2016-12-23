@@ -1,6 +1,11 @@
 HISTORY
 -------
 
+0.5.1 (2016-12-23)
+^^^^^^^^^^^^^^^^^^
+
+* Fixes address.mustache template for TeX Live 2016.
+
 0.5.0 (2015-12-31)
 ^^^^^^^^^^^^^^^^^^
 
