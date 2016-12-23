@@ -10,3 +10,7 @@ requirements.txt
 *.egg/
 _build/
 build/
+*.pyc
+.tox/
+*.egg-info/
+.coverage
