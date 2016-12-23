@@ -55,5 +55,6 @@ def main():
     except (RuntimeError, UnboundLocalError, InvalidFormat, NotFound) as exc:
         sys.stderr.write('ERROR: {0}\n'.format(exc))
 
+
 if __name__ == '__main__':
     main()
