@@ -5,16 +5,23 @@ all: address.pdf
 address.dvi: address.tex
 
 %.pdf: %.dvi
-	dvipdfmx -f template/vlpgothic.map $<
+	#dvipdfmx -f template/vlpgothic.map $<
+	dvipdfmx -p 100mm,148mm $<
 
 %.dvi: %.tex
-	## end of linting stuff
+	# end of linting stuff
 	platex $< # create draft input
 	-$(MAKEINDEX) -s address.ist $(<:%.tex=%)
 	platex $< # create draft content with correct spacing for index and toc
 	-$(MAKEINDEX) -s address.ist $(<:%.tex=%) # recreate index with correct page number
 	platex $< # recreate toc with correct page number
 
+prebuild:  ## prebuild; prepare genenga
+	virtualenv -p /usr/bin/python3 ./.venv
+	.venv/bin/python -m pip install Genenga
+
+%.tex: prebuild address.csv
+	.venv/bin/genenga -t template/address.mustache address.csv
 
 check-precommit:
 	make address.dvi
