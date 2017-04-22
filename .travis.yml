@@ -1,6 +1,4 @@
 language: python
-python:
-  - "2.7"
 sudo: false
 env:
   - TOX_ENV=py27
@@ -23,8 +21,13 @@ matrix:
     - env: TOX_ENV=py33
     - env: TOX_ENV=py34
   include:
-    - env: TOX_ENV=py27
-    - env: TOX_ENV=py35
-    - env: TOX_ENV=py36
-    - env: TOX_ENV=pypy
-    - env: TOX_ENV=pypy3
+    - python2.7
+      env: TOX_ENV=py27
+    - python3.5
+      env: TOX_ENV=py35
+    - python3.5
+      env: TOX_ENV=py36
+    - pypy
+      env: TOX_ENV=pypy
+    - pypy
+      env: TOX_ENV=pypy3
