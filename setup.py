@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-    Copyright (C) 2012-2016 Kouhei Maeda <mkouhei@palmtb.net>
+    Copyright (C) 2012-2017 Kouhei Maeda <mkouhei@palmtb.net>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -74,9 +74,6 @@ long_description = (
 requires = ['setuptools',
             'pystache',
             'pguard']
-
-with open('requirements.txt', 'w') as _file:
-    _file.write('\n'.join(requires))
 
 setup(name='genenga',
       version=__version__,
