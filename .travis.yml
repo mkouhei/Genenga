@@ -2,10 +2,7 @@ language: python
 sudo: false
 python:
   - "2.7"
-  - "3.3"
-  - "3.4"
   - "3.5"
-  - "3.6"
   - "pypy"
   - "pypy3"
 
@@ -16,15 +13,6 @@ script:
   - tox -e $TOX_ENV
   - python setup.py check -r
 
-env:
-  - TOX_ENV=py27
-  - TOX_ENV=py33
-  - TOX_ENV=py34
-  - TOX_ENV=py35
-  - TOX_ENV=py36
-  - TOX_ENV=pypy
-  - TOX_ENV=pypy3
-
 after_success:
   - coveralls --verbose
 
@@ -34,7 +22,7 @@ matrix:
       env: TOX_ENV=py27
     - python: 3.5
       env: TOX_ENV=py35
-    - python: 3.6
+    - python: 3.5
       env: TOX_ENV=py36
     - python: pypy
       env: TOX_ENV=pypy
