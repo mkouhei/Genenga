@@ -21,13 +21,13 @@ matrix:
     - env: TOX_ENV=py33
     - env: TOX_ENV=py34
   include:
-    - python2.7
+    - python: 2.7
       env: TOX_ENV=py27
-    - python3.5
+    - python: 3.5
       env: TOX_ENV=py35
-    - python3.5
+    - python: 3.5
       env: TOX_ENV=py36
-    - pypy
+    - python: pypy
       env: TOX_ENV=pypy
-    - pypy
+    - python: pypy
       env: TOX_ENV=pypy3
