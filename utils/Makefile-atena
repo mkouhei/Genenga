@@ -6,7 +6,7 @@ address.dvi: address.tex
 
 %.pdf: %.dvi
 	#dvipdfmx -f template/vlpgothic.map $<
-	dvipdfmx -p 100mm,148mm $<
+	dvipdfmx -p 100mm,148mm -f template/jis-cjk.map $<
 
 %.dvi: %.tex
 	# end of linting stuff
