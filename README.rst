@@ -21,13 +21,12 @@ Requirement
 Debian Packages
 ^^^^^^^^^^^^^^^
 
-* texlive-binaries (>= 2015.20150524.37)
+* texlive-binaries (>= 2017.20170613.44)
 * texlive-lang-japanese
 * libc-bin
-* python2.7 over or python3.3 over
-* fonts-vlgothic
-* fonts-aoyagi-kouzan-t
-* fonts-umeplus
+* python2.7 over or python3.5 over
+* fonts-takao-gothic
+* fonts-takao-mincho
 * make
 * python-pystache or python3-pystache
 
