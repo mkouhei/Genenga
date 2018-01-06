@@ -1,6 +1,14 @@
 HISTORY
 -------
 
+0.6.0 (2017-01-06)
+^^^^^^^^^^^^^^^^^^
+
+* Supports Python 3.5 over.
+* Changes LaTeX template layout.
+* Changes default fonts to Takao Gothic and Takao Mincho.
+* Fixes pylint violatins.
+
 0.5.1 (2016-12-23)
 ^^^^^^^^^^^^^^^^^^
 
