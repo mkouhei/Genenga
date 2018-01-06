@@ -51,7 +51,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = 'Genenga'
-copyright = '2012-2017, Kouhei Maeda <mkouhei@palmtb.net>'
+copyright = '2012-2018, Kouhei Maeda <mkouhei@palmtb.net>'
 author = 'Kouhei Maeda'
 
 # The version info for the project you're documenting, acts as replacement for
