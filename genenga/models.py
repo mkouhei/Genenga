@@ -8,7 +8,7 @@ class Person:
     """Person class."""
 
     def __init__(self, first_name, last_name=''):
-        """initialize Person."""
+        """Initialize Person."""
         if first_name:
             self.first_name = first_name
         else:
@@ -20,7 +20,7 @@ class PostalCode:
     """The Japanese postal code class."""
 
     def __init__(self, postal_code):
-        """initialize PostalCode."""
+        """Initialize PostalCode."""
         parsed_code = self.parse_postal_code(postal_code)
         self.no0 = parsed_code[0]
         self.no1 = parsed_code[1]
@@ -32,7 +32,7 @@ class PostalCode:
 
     @staticmethod
     def parse_postal_code(postal_code):
-        """parse postal code string."""
+        """Parse postal code string."""
         pat_numonly = re.compile(r'\A\d{7}(\n)?\Z')
         pat_hyphen = re.compile(r'\A\d{3}-\d{4}(\n)?\Z')
         if pat_numonly.match(postal_code):
@@ -46,7 +46,7 @@ class Address:
     """Address class."""
 
     def __init__(self, *args, **kwargs):
-        """initialize Address."""
+        """Initialize Address."""
         self.prefectures = kwargs.get('prefectures')
         self.city = kwargs.get('city')
         self.address = kwargs.get('address')
@@ -63,7 +63,7 @@ class Address:
             self.convert_deprecated()
 
     def convert_deprecated(self):
-        """convert deprecated format."""
+        """Convert deprecated format."""
         self.address0 = '{0}{1}{2}'.format(self.prefectures,
                                            self.city,
                                            self.address)

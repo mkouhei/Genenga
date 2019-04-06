@@ -7,7 +7,7 @@ class Convert:
     """The intermediate object for converting to Address object."""
 
     def set_param(self, name, value):
-        """set name:value property to convert object."""
+        """Set name:value property to convert object."""
         setattr(self, name, value)
 
     def convert_from_argparse(self, args):
@@ -18,7 +18,7 @@ class Convert:
 
 
 def gen_atena(record):
-    """generate atena object."""
+    """Generate atena object."""
     # 1: last name (required)
     # 2: first_name (required)
     # 3: another person's first_name (optional)
@@ -39,7 +39,7 @@ def gen_atena(record):
 
 
 def csv2addr(address_file):
-    """convert csv to address."""
+    """Convert csv to address."""
     with open(address_file) as fobj:
         lines = [line.split(',') for line in fobj
                  if line.split(',')[0] == '1']
@@ -48,7 +48,7 @@ def csv2addr(address_file):
 
 
 def atena2dict(atena):
-    """deprecated."""
+    """Deprecated."""
     return dict(last_name=atena.person.last_name,
                 first_name1=atena.person.first_name,
                 first_name2=atena.another_person.first_name,

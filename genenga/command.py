@@ -9,7 +9,7 @@ TEMPLATE = 'address.mustache'
 
 
 def parse_options():
-    """parse options."""
+    """Parse options."""
     prs = argparse.ArgumentParser(description='usage')
     prs.add_argument('-v', '--version',
                      action='version',
@@ -21,7 +21,7 @@ def parse_options():
 
 
 def set_option(parser, keyword):
-    """set options by keyword.
+    """Set options by keyword.
 
     :param `argparse.ArgumentParser` parser: object of argparser
     :param str keyword: keyword of option
@@ -47,7 +47,7 @@ def set_option(parser, keyword):
 
 
 def main():
-    """main function."""
+    """Genenga main function."""
     try:
         convt = convert.Convert()
         convt.convert_from_argparse(parse_options())
