@@ -21,14 +21,14 @@ Requirement
 Debian Packages
 ^^^^^^^^^^^^^^^
 
-* texlive-binaries (>= 2017.20170613.44)
+* texlive-binaries (>= 2018.20181218.449446)
 * texlive-lang-japanese
 * libc-bin
-* python2.7 over or python3.5 over
+* python3.5 over
 * fonts-takao-gothic
 * fonts-takao-mincho
 * make
-* python-pystache or python3-pystache
+* python3-pystache
 
 format of address.csv
 ---------------------
