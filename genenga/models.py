@@ -4,7 +4,7 @@ import re
 from genenga.exceptions import InvalidFormat
 
 
-class Person(object):
+class Person:
     """Person class."""
 
     def __init__(self, first_name, last_name=''):
@@ -16,7 +16,7 @@ class Person(object):
         self.last_name = last_name
 
 
-class PostalCode(object):
+class PostalCode:
     """The Japanese postal code class."""
 
     def __init__(self, postal_code):
@@ -37,13 +37,12 @@ class PostalCode(object):
         pat_hyphen = re.compile(r'\A\d{3}-\d{4}(\n)?\Z')
         if pat_numonly.match(postal_code):
             return postal_code.rstrip()
-        elif pat_hyphen.match(postal_code):
+        if pat_hyphen.match(postal_code):
             return ''.join(postal_code.rstrip().split('-'))
-        else:
-            raise InvalidFormat('The postal code is not supported format.')
+        raise InvalidFormat('The postal code is not supported format.')
 
 
-class Address(object):
+class Address:
     """Address class."""
 
     def __init__(self, *args, **kwargs):
@@ -72,7 +71,7 @@ class Address(object):
         self.address2 = self.extra
 
 
-class Atena(object):
+class Atena:
     """Atena."""
 
     def __init__(self, person, another_person, postal_code, address):

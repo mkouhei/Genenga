@@ -3,7 +3,7 @@
 from genenga.models import Atena, Person, PostalCode, Address
 
 
-class Convert(object):
+class Convert:
     """The intermediate object for converting to Address object."""
 
     def set_param(self, name, value):
