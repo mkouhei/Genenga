@@ -10,7 +10,7 @@ from genenga.exceptions import NotFound
 
 
 def generate_atena_tex(template, address_file, outfile_path):
-    """generate atena TeX file.
+    """Generate atena TeX file.
 
     :param str template: template dictionary
     :param str address_file: address list csv file
@@ -35,7 +35,7 @@ def generate_atena_tex(template, address_file, outfile_path):
 
 
 def check_existence_files(*args):
-    """check exisitence of files.
+    """Check exisitence of files.
 
     :rtype: bool
     :param str path: file path
@@ -46,7 +46,7 @@ def check_existence_files(*args):
 
 
 def check_existence_dir(dirpath=None):
-    """check directory existence.
+    """Check directory existence.
 
     :rtype: str
     :return: directory path
@@ -56,12 +56,11 @@ def check_existence_dir(dirpath=None):
         if not os.path.isdir(dirpath):
             os.mkdir(dirpath)
         return dirpath
-    else:
-        return os.path.curdir
+    return os.path.curdir
 
 
 def generate_atena(convt):
-    """generate atena.
+    """Generate atena.
 
     :param `convert.Convert` convt: intermediate object for converting address.
     """
